@@ -1,9 +1,13 @@
-import Steps from '@/components/PageComponents/GnerateESG/Micro/Steps'
+import Steps from "@/Components/GnerateESG/Micro/Steps"
+import Loading from "@/Components/Loading"
+import { Suspense } from "react"
 
 
 const CreateItem = ({ params }: { params: { id: string } }) => {
   return (
-    <Steps id={params.id} />
+    <Suspense fallback={<Loading />}>
+      <Steps id={params.id} />
+    </Suspense>
   )
 }
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useContriesStore } from '@/components/utils/Zustand/store';
+import { useContriesStore } from '@/utils/Zustand';
 import React from 'react';
 import Dropdown from '../Dropdown';
 
@@ -24,7 +24,6 @@ type Props = {
 };
 
 const CountryDropdown: React.FC<Props> = ({
-  label = 'Select Country',
   placeholder = 'Select Country',
   selectedValue = 'IN',
   setSelectedValue,

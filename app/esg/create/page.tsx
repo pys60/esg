@@ -1,8 +1,12 @@
-import GenerateESG from '@/components/PageComponents/GnerateESG'
+import GenerateESG from "@/Components/GnerateESG"
+import Loading from "@/Components/Loading"
+import { Suspense } from "react"
 
 const CreateESG = () => {
   return (
-    <GenerateESG />
+    <Suspense fallback={<Loading />}>
+      <GenerateESG />
+    </Suspense>
   )
 }
 

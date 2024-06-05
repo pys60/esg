@@ -1,9 +1,7 @@
 'use client'
 
-import { useChatHistoryStore, useEsgReportDataStore } from '@/components/utils/Zustand/store'
-import { apiClient } from '@/utils/apiClient'
+import { useChatHistoryStore } from '@/utils/Zustand'
 import React, { useState } from 'react'
-import toast from 'react-hot-toast'
 
 
 type InputProps = CommonProps & {
@@ -24,7 +22,6 @@ const Input = (props: Props) => {
   const [isFocused, setIsFocused] = useState(false)
   const [showButton, setShowButton] = useState(false);
   const [loading, setLoading] = useState(false)
-  const { step1Data } = useEsgReportDataStore()
   const { setSelectedQuestion } = useChatHistoryStore()
   const mode = props.mode || 'light'
   const [disabled, setDisabled] = useState(true)
@@ -40,29 +37,29 @@ const Input = (props: Props) => {
   };
 
 
-  const handleAiClick = async (question: EsgQuestion) => {
-    if (!step1Data.companyName.value || !step1Data.companyBrief.value) {
-      toast.error('Please fill in company name and info to use AI')
-      return
-    }
-    try {
-      const data: any = await apiClient.post('calculate/ans', {
-        body: JSON.stringify({
-          question: question.q,
-          hint: `My company is ${step1Data.companyName.value} and we do ${step1Data.companyBrief.value}, ${question.a}`,
-        })
-      }).json()
+  // const handleAiClick = async (question: EsgQuestion) => {
+  //   if (!step1Data.companyName.value || !step1Data.companyBrief.value) {
+  //     toast.error('Please fill in company name and info to use AI')
+  //     return
+  //   }
+  //   try {
+  //     const data: any = await apiClient.post('calculate/ans', {
+  //       body: JSON.stringify({
+  //         question: question.q,
+  //         hint: `My company is ${step1Data.companyName.value} and we do ${step1Data.companyBrief.value}, ${question.a}`,
+  //       })
+  //     }).json()
 
-      return data.content
+  //     return data.content
 
-    }
-    catch (err) {
-      toast.error('AI is not working, please try again later')
-    } finally {
+  //   }
+  //   catch (err) {
+  //     toast.error('AI is not working, please try again later')
+  //   } finally {
 
-    }
+  //   }
 
-  }
+  // }
 
   const handleAutoFill = async () => {
 

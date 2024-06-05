@@ -1,15 +1,16 @@
 'use client'
 
-import Chat from '@/components/PageComponents/GnerateESG/Micro/Chat'
-import ESGSideBar from '@/components/PageComponents/GnerateESG/Micro/ESGSideBar'
-import React, { useState } from 'react'
+import Chat from '@/Components/GnerateESG/Micro/Chat'
+import ESGSideBar from '@/Components/GnerateESG/Micro/ESGSideBar'
+import Loading from '@/Components/Loading'
+import React, { Suspense, useState } from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
 
 
 const Template = ({ children }: { children: React.ReactNode, params: any }) => {
   const [open, setOpen] = useState(true)
   return (
-    <>
+    <Suspense fallback={<Loading />}>
       <div className='w-full relative justify-start min-h-[100vh] flex'>
         <ESGSideBar />
         {!open && <button onClick={() => setOpen!(!open)} type='button' className='fixed flex items-center justify-center top-[30vh] border border-[#001e5be4] rounded-md rounded-r-[0px] border-r-0 right-[0] w-[4vh] h-[4vh] z-[10] bg-white '>
@@ -27,7 +28,7 @@ const Template = ({ children }: { children: React.ReactNode, params: any }) => {
           <Chat open={open} setOpen={setOpen} />
         </div>
       </div>
-    </>
+    </Suspense>
   )
 }
 

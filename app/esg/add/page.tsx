@@ -1,9 +1,13 @@
-import Step0 from '@/components/PageComponents/GnerateESG/Micro/Steps/Step0'
+import Step0 from "@/Components/GnerateESG/Micro/Steps/Step0"
+import Loading from "@/Components/Loading"
+import { Suspense } from "react"
 
 
 const Add = () => {
   return (
-    <Step0 nextstep={'esg-report'} />
+    <Suspense fallback={<Loading />}>
+      <Step0 nextstep={'esg-report'} />
+    </Suspense>
   )
 }
 

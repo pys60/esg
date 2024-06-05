@@ -1,15 +1,15 @@
 'use client'
 
-import PriButton from '@/components/Common/Micro/PriButton';
-import { useEsgReportDataStore, useUserStore } from '@/components/utils/Zustand/store';
-import { apiClient, apiClientFormDataWithAuth } from '@/components/utils/apiClient';
+import Input from '@/Components/Micro/Input';
+import PriButton from '@/Components/Micro/PriButton';
+import { useEsgReportDataStore, useUserStore } from '@/utils/Zustand';
+import { apiClient, apiClientFormDataWithAuth } from '@/utils/apiClient';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { GrPowerReset } from "react-icons/gr";
 import { IoMdSave } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
-import Input from '../ItemListModal/Micro/Input';
 
 type Props = {
   isOpen: boolean
@@ -17,35 +17,19 @@ type Props = {
 
 }
 
-interface Errors {
-  bankName: string;
-  accountNumber: string;
-  accountName: string;
-  swiftCode: string;
-  ifscCode: string;
-}
-
-interface FormState {
-  bankName: string;
-  accountNumber: string;
-  accountName: string;
-  swiftCode: string;
-  ifscCode: string;
-}
-
+// interface Errors {
+//   bankName: string;
+//   accountNumber: string;
+//   accountName: string;
+//   swiftCode: string;
+//   ifscCode: string;
+// }
 
 const DetailForAIModal = ({ isOpen, setIsOpen }: Props) => {
-  const { user, setUser } = useUserStore()
+  const { setUser } = useUserStore()
   const { step1Data, setStep1Data } = useEsgReportDataStore()
 
-  function closeModal() {
-    setIsOpen(false)
-  }
   const [loading, setLoading] = useState(false)
-
-  function openModal() {
-    setIsOpen(true)
-  }
 
   const handleReset = async () => {
     try {
@@ -71,7 +55,7 @@ const DetailForAIModal = ({ isOpen, setIsOpen }: Props) => {
     }
   }
 
-  const handleSave = async (type?: string) => {
+  const handleSave = async () => {
     let stepData = {}
     if (!step1Data.companyName.value || !step1Data.companyBrief.value) {
       toast('Company Name and Company Brief are required, for using the ZeroCarbon AI.', {
@@ -85,7 +69,6 @@ const DetailForAIModal = ({ isOpen, setIsOpen }: Props) => {
       for (let i = 0; i < stepDataKeys.length; i++) {
         const key = stepDataKeys[i]
         if (step1Data[key as keyof typeof step1Data].type === 'file') {
-          // @ts-ignore
           const file = step1Data[key as keyof typeof step1Data].value[0]
           if (!file) continue
           const formData = new FormData()
@@ -182,8 +165,6 @@ const DetailForAIModal = ({ isOpen, setIsOpen }: Props) => {
             }
           }
         }
-
-        console.log(stepData)
         setStep1Data(stepData)
 
 
