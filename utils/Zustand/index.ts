@@ -30,7 +30,7 @@ export const useContriesStore = create<
 >((set) => ({
   countries: [],
   setCountries: async () => {
-    const data = await fetch("https://restcountries.com/v3.1/all?fields=name,flags,cca2");
+    const data = await fetch("https://restcountries-ulgvneagma-uc.a.run.app/v3.1/all?fields=name,flags,cca2");
     const countriesData = await data.json();
     const countriesArray = countriesData.map((country: any) => {
       return {
