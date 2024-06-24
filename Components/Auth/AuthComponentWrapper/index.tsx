@@ -1,7 +1,7 @@
 'use client'
 
+import { useRouterWithQuery } from '@/utils/router'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 import React from 'react'
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 }
 
 const AuthComponentWrapper = ({ image, children, backgroundColor }: Props) => {
-  const router = useRouter()
+  const router = useRouterWithQuery()
 
   return (
     <div style={{

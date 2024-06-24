@@ -6,7 +6,7 @@ import { useEnhancedStandardsStore, useGlobalStandardsStore, useUserStore } from
 import { apiClient, apiClientFormDataWithAuth } from '@/utils/apiClient'
 import ESGQuestions from '@/utils/esg'
 import { ENHANCED } from '@/utils/esg/enhanced'
-import { useRouter } from 'next/navigation'
+import { useRouterWithQuery } from '@/utils/router'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import ESGBottomBar from '../ESGBottomBar'
@@ -24,7 +24,7 @@ type Props = {
 
 
 const Step4 = ({ title, nextstep, prevstep }: Props) => {
-  const router = useRouter()
+  const router = useRouterWithQuery()
   const [loading, setLoading] = useState(false)
   const { setUser } = useUserStore()
   const { globalStandards } = useGlobalStandardsStore()

@@ -8,6 +8,7 @@ import { useEnhancedStandardsStore, useGlobalStandardsStore, useUserStore } from
 import { apiClient, apiClientFormDataWithAuth } from '@/utils/apiClient'
 import ESGQuestions from '@/utils/esg'
 import { ENHANCED } from '@/utils/esg/enhanced'
+import { useRouterWithQuery } from '@/utils/router'
 import {
   ArcElement,
   BarElement,
@@ -17,7 +18,6 @@ import {
   Title,
   Tooltip,
 } from "chart.js"
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Bar, Doughnut } from 'react-chartjs-2'
 import toast from 'react-hot-toast'
@@ -43,7 +43,7 @@ type Props = {
 }
 
 const Step2 = ({ title, nextstep, prevstep }: Props) => {
-  const router = useRouter()
+  const router = useRouterWithQuery()
   const [loading, setLoading] = useState(false)
   const [step2Data, setStep2Data] = useState({
     picture: {

@@ -3,9 +3,22 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_DASHBOARD_BACKEND_URL || 'https://al
 
 const isBrowser = typeof window !== 'undefined';
 
+const getBackendURL = () =>{
+  //check if ref=alpha is in the url
+  if (typeof window !== 'undefined') {
+    const urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.get('ref') === 'alpha'){
+      return 'https://alpha-api.zerocarbon.one'
+    }
+    return BACKEND_URL
+  }
+
+  return BACKEND_URL
+}
+
 
 const apiClient = ky.create({
-  prefixUrl: BACKEND_URL,
+  prefixUrl: getBackendURL(),
   headers: {
     'Content-Type': 'application/json',
   },
@@ -14,7 +27,7 @@ const apiClient = ky.create({
 const token = isBrowser ? localStorage.getItem('token') : null;
 
 const apiClientWithAuth = ky.create({
-  prefixUrl: BACKEND_URL,
+  prefixUrl: getBackendURL(),
   headers: {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${token}`,
@@ -23,7 +36,7 @@ const apiClientWithAuth = ky.create({
 
 //formdata
 const apiClientFormDataWithAuth = ky.create({
-  prefixUrl: BACKEND_URL,
+  prefixUrl: getBackendURL(),
   headers: {
     Authorization: `Bearer ${token}`,
   },

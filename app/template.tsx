@@ -2,8 +2,9 @@
 
 import Loading from '@/Components/Loading';
 import { useCategoriesStore, useContriesStore, useUserStore } from '@/utils/Zustand';
+import { useRouterWithQuery } from '@/utils/router';
 import { jwtDecode } from 'jwt-decode';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import React, { Suspense, useEffect } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
 
@@ -15,7 +16,7 @@ import "slick-carousel/slick/slick.css";
 const Template = ({ children }: { children: React.ReactNode }) => {
   const { setCountries } = useContriesStore()
   const { setCategories } = useCategoriesStore()
-  const router = useRouter()
+  const router = useRouterWithQuery()
   const pathname = usePathname()
   const { setUser } = useUserStore()
   const searchParams = useSearchParams()
@@ -26,6 +27,7 @@ const Template = ({ children }: { children: React.ReactNode }) => {
     setCategories()
 
     const tokenFromParams = searchParams.get('token')
+    const queriesToDelete = ['token']
 
     if (tokenFromParams) {
       localStorage.setItem('token', tokenFromParams)
@@ -33,16 +35,20 @@ const Template = ({ children }: { children: React.ReactNode }) => {
       const decoded: any = jwtDecode(tokenFromParams)
 
       if (new Date().getTime() > decoded.exp * 1000) {
-        router.push('/')
+        router.push('/', {
+          queriesToDelete
+        })
         localStorage.removeItem('token')
         toast.error('Session Expired')
       } else {
         if (decoded.type === 'admin') {
-          router.push('/admin')
+          router.push('/admin', {
+            queriesToDelete
+          })
         } else if (decoded.type === 'dev') {
-          router.push('/seller')
+          router.push('/seller', { queriesToDelete })
         } else {
-          router.push('/esg/create')
+          router.push('/esg/create', { queriesToDelete })
         }
       }
 
@@ -56,24 +62,24 @@ const Template = ({ children }: { children: React.ReactNode }) => {
       if (pathname === '/auth/seller' || pathname === '/auth/buisness' || pathname === '/auth/admin' || pathname.includes('/esg/create')) {
         return
       } else {
-        router.push('/')
+        router.push('/', { queriesToDelete })
       }
     } else {
       const decoded: any = jwtDecode(token)
       setUser(token)
       if (new Date().getTime() > decoded.exp * 1000) {
-        router.push('/')
+        router.push('/', { queriesToDelete })
         localStorage.removeItem('token')
         toast.error('Session Expired')
       } else {
         if (decoded.type === 'admin') {
-          router.push('/admin')
+          router.push('/admin', { queriesToDelete })
         } else if (decoded.type === 'dev') {
-          router.push('/seller')
+          router.push('/seller', { queriesToDelete })
         } else {
           if (!pathname.includes('/esg/create')) {
 
-            router.push('/esg/create')
+            router.push('/esg/create', { queriesToDelete })
           }
         }
       }

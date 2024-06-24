@@ -1,9 +1,9 @@
 'use client'
-import { useRouter } from 'next/navigation'
+import { useRouterWithQuery } from '@/utils/router'
 import { useEffect } from 'react'
 
 const GenerateESG = () => {
-  const router = useRouter()
+  const router = useRouterWithQuery()
 
   useEffect(() => {
     router.push('/esg/add')

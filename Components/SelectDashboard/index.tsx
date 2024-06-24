@@ -1,13 +1,13 @@
 'use client';
 
+import { useRouterWithQuery } from '@/utils/router';
 import { jwtDecode } from 'jwt-decode';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import Logo from '../SVG/Logo';
 
 
 const SelectDashboard = () => {
-  const router = useRouter()
+  const router = useRouterWithQuery()
   const buyerClick = () => {
     const token = localStorage.getItem('token')
 

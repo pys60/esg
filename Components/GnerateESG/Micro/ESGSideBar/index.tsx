@@ -1,7 +1,8 @@
 'use client'
 
 import { useESGListItemsStore } from '@/utils/Zustand';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouterWithQuery } from '@/utils/router';
+import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 
@@ -9,7 +10,7 @@ import { useEffect, useState } from 'react';
 
 const ESGSideBar = () => {
   const params = useParams()
-  const router = useRouter()
+  const router = useRouterWithQuery()
   const { esgReportItems: listItems } = useESGListItemsStore()
 
   const [active, setActive] = useState('')

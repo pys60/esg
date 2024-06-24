@@ -5,13 +5,13 @@ import Radio from '@/Components/Micro/Radio'
 import UploadInput from '@/Components/Micro/UploadInput'
 import { useEsgReportDataStore, useGlobalStandardsStore, useUserStore } from '@/utils/Zustand'
 import { apiClient, apiClientFormDataWithAuth } from '@/utils/apiClient'
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Bar, Doughnut } from 'react-chartjs-2'
 import toast from 'react-hot-toast'
 import StepsContainer from './StepsContainer'
 
 import Label from '@/Components/Micro/Label'
+import { useRouterWithQuery } from '@/utils/router'
 import {
   ArcElement,
   BarElement,
@@ -41,7 +41,7 @@ type Props = {
 }
 
 const Step1 = ({ title, nextstep }: Props) => {
-  const router = useRouter()
+  const router = useRouterWithQuery()
   const [loading, setLoading] = useState(false)
   const { setUser } = useUserStore()
   const { step1Data, setStep1Data } = useEsgReportDataStore()

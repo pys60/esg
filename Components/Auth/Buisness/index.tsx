@@ -3,13 +3,13 @@
 import Input from '@/Components/Micro/Input';
 import { useUserStore } from '@/utils/Zustand';
 import { apiClient } from '@/utils/apiClient';
-import { useRouter } from 'next/navigation';
+import { useRouterWithQuery } from '@/utils/router';
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import AuthComponentWrapper from '../AuthComponentWrapper';
 
 const BuisnessLogin = () => {
-  const router = useRouter()
+  const router = useRouterWithQuery()
   const [formData, setFormData] = useState({
     username: '',
     password: '',

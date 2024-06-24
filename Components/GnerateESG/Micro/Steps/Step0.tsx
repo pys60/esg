@@ -5,8 +5,8 @@ import PriButton from '@/Components/Micro/PriButton';
 import DetailForAIModal from '@/Components/Modals/DetailForAIModal';
 import { useEnhancedStandardsStore, useGlobalStandardsStore, useUserStore } from '@/utils/Zustand';
 import { apiClient } from '@/utils/apiClient';
+import { useRouterWithQuery } from '@/utils/router';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { GiSave } from "react-icons/gi";
@@ -70,7 +70,7 @@ const Step0 = ({ nextstep }: Props) => {
   const [currentStep, setCurrentStep] = useState(0)
   const { globalStandards, setGlobalStandards } = useGlobalStandardsStore()
   const { enhancedStandards, setEnhancedStandard } = useEnhancedStandardsStore()
-  const router = useRouter()
+  const router = useRouterWithQuery()
   const { setUser } = useUserStore()
 
   const [loading, setLoading] = useState(false)

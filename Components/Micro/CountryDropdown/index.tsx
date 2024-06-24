@@ -2,7 +2,7 @@
 
 import { useContriesStore } from '@/utils/Zustand';
 import React from 'react';
-import Dropdown from '../Dropdown';
+import { DropDown } from 'zerocarbonweb';
 
 type Country = {
   code: string;
@@ -46,7 +46,7 @@ const CountryDropdown: React.FC<Props> = ({
   }));
 
   return (
-    <Dropdown
+    <DropDown
       label={
         !noLabel ? 'Select Country' : undefined
       }

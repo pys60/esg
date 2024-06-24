@@ -4,7 +4,7 @@ import Input from '@/Components/Micro/Input'
 import UploadInput from '@/Components/Micro/UploadInput'
 import { useUserStore } from '@/utils/Zustand'
 import { apiClient, apiClientFormDataWithAuth } from '@/utils/apiClient'
-import { useRouter } from 'next/navigation'
+import { useRouterWithQuery } from '@/utils/router'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import ESGBottomBar from '../ESGBottomBar'
@@ -32,7 +32,7 @@ type Props = {
 }
 
 const Step7 = ({ title, prevstep, nextstep }: Props) => {
-  const router = useRouter()
+  const router = useRouterWithQuery()
   const [loading, setLoading] = useState(false)
   const [step7Data, setStep7Data] = useState<Record<string, Step7Data>>({
     picture: {

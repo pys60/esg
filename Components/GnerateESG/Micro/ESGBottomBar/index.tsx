@@ -1,7 +1,6 @@
 'use client'
 
 import PriButton from '@/Components/Micro/PriButton';
-import { useEffect, useState } from 'react';
 import { FiSave } from "react-icons/fi";
 import { GiSave } from "react-icons/gi";
 import { GrPowerReset } from "react-icons/gr";
@@ -29,23 +28,23 @@ const ESGBottomBar = ({
   nextDisabled,
   generate
 }: Props) => {
-  const [, setTimeForAutoSave] = useState(0);
+  // const [, setTimeForAutoSave] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeForAutoSave(currentTime => {
-        if (currentTime >= 30) {
-          handleSave('SAVE');
-          return 0; // Reset the timer to 0 after saving
-        } else {
-          return currentTime + 1; // Increment the timer by 1
-        }
-      });
-    }, 1000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setTimeForAutoSave(currentTime => {
+  //       if (currentTime >= 30) {
+  //         handleSave('SAVE');
+  //         return 0; // Reset the timer to 0 after saving
+  //       } else {
+  //         return currentTime + 1; // Increment the timer by 1
+  //       }
+  //     });
+  //   }, 1000);
 
-    return () => clearInterval(interval);
-  }
-    , [handleSave]);
+  //   return () => clearInterval(interval);
+  // }
+  //   , [handleSave]);
 
   return (
     <div className='h-[10vh] z-10 bg-black w-full gap-[1rem] flex items-center justify-end px-[5%] fixed left-0 bottom-0' >
