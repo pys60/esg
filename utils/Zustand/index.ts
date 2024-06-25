@@ -1,4 +1,3 @@
-import ky from "ky";
 import { BiShieldQuarter } from "react-icons/bi";
 import { FaRegFileAlt } from "react-icons/fa";
 import { GoLaw } from "react-icons/go";
@@ -97,7 +96,7 @@ export const useUserStore = create<
     if(localStorage && localStorage.getItem('token')) {
       set(() => ({ userLoading: true }));
       const token = localStorage.getItem('token') || to;
-      const data:any = await ky.get(`${process.env.NEXT_PUBLIC_DASHBOARD_BACKEND_URL}/auth/me`, {
+      const data:any = await apiClient.get(`auth/me`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
