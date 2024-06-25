@@ -134,6 +134,7 @@ const Input = (props: Props) => {
               onKeyUp={props.onKeyUp}
               rows={props.rows || 10}
               style={{ height: '180px' }}
+              readOnly={props.readOnly}
             />
           ) : (
             <input
@@ -152,6 +153,7 @@ const Input = (props: Props) => {
               required={props.required}
               disabled={props.disabled || loading || !disabled}
               autoComplete='new-password'
+              readOnly={props.readOnly}
               className={`w-full disabled:opacity-50 disabled:cursor-not-allowed ${props.endIcon ? 'pr-[48px]' : 'pr-[1rem]'}
               p-[1rem] h-[48px] border-[1px] ${mode === 'light' ? props.transparent ? 'border-[rgba(0,0,0,0.5)] bg-transparent' : 'bg-white  border-[rgba(0,0,0,0.5)]' : `${props.transparent ? 'bg-transparent' : 'bg-[#121212]'} text-white border-[#7C7C7C] placeholder:text-[#7C7C7C]`
                 } rounded-[5px] outline-none ${props.error ? 'border-red-500' : ''}`}

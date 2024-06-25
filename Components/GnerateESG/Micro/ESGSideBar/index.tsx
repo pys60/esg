@@ -5,9 +5,6 @@ import { useRouterWithQuery } from '@/utils/router';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-
-
-
 const ESGSideBar = () => {
   const params = useParams()
   const router = useRouterWithQuery()

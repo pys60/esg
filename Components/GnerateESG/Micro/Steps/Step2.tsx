@@ -3,6 +3,7 @@
 import Input from '@/Components/Micro/Input'
 import Label from '@/Components/Micro/Label'
 import PriButton from '@/Components/Micro/PriButton'
+import Radio from '@/Components/Micro/Radio'
 import UploadInput from '@/Components/Micro/UploadInput'
 import { useEnhancedStandardsStore, useGlobalStandardsStore, useUserStore } from '@/utils/Zustand'
 import { apiClient, apiClientFormDataWithAuth } from '@/utils/apiClient'
@@ -275,7 +276,7 @@ const Step2 = ({ title, nextstep, prevstep }: Props) => {
           <Label checked={true}>
             {step2Data.organizationScope.label}
           </Label>
-          <Input
+          {/* <Input
             disabled={true}
             checkBox={false}
             transparent={true}
@@ -316,7 +317,33 @@ const Step2 = ({ title, nextstep, prevstep }: Props) => {
             value={scope3 ? `${scope3}` : ''}
             setValue={(e: any) => setStep2Data({ ...step2Data, organizationScope: { ...step2Data.organizationScope, value3: e.target.value } })}
             required={step2Data.organizationScope.required}
-            type={step2Data.organizationScope.type} />
+            type={step2Data.organizationScope.type} /> */}
+          <div className='flex my-[1rem] gap-[1rem]'>
+            <Radio
+              checked={true}
+              label={`Scope 1 : ${scope1} C02e`}
+              name='scope'
+              onChange={() => { }}
+              id='scope1'
+              noRadio={true}
+            />
+            <Radio
+              checked={true}
+              label={`Scope 2 : ${scope2} C02e`}
+              name='scope'
+              onChange={() => { }}
+              id='scope2'
+              noRadio={true}
+            />
+            <Radio
+              checked={true}
+              label={`Scope 3 : ${scope3} C02e`}
+              name='scope'
+              onChange={() => { }}
+              id='scope3'
+              noRadio={true}
+            />
+          </div>
           <div className='flex items-center gap-[1rem]'>
             <PriButton type='button' onClick={() => {
               window.open(`https://calculator.zerocarbon.one/?token=${localStorage.getItem('token')}&ref=alpha`)
@@ -420,11 +447,33 @@ const Step2 = ({ title, nextstep, prevstep }: Props) => {
               }}
             />
           </div>
-          <div className='w-full  h-[450px] my-[40px]'>
-            {/* <Label noCheckbox={true} checked={false}>
+          <div className='w-full  h-[500px] my-[40px]'>
+            <Label checked={false}>
               GHS Emissions(Co2e) Last FY VS current FY
-            </Label> */}
-            <Input transparent={true} checkBox={false} spaced={true} label='GHS Emissions(Co2e) Last FY VS current FY' name='GHS Emissions(Co2e) Last FY VS current FY' value={lastYear} setValue={(e) => setLastYear(Number(e.target.value))} required={false} type='number' />
+            </Label>
+            {/* <Input transparent={true} checkBox={false} spaced={true} label='GHS Emissions(Co2e) Last FY VS current FY' name='GHS Emissions(Co2e) Last FY VS current FY' value={lastYear} setValue={(e) => setLastYear(Number(e.target.value))} required={false} type='number' /> */}
+            <div className='flex gap-[1rem] items-center'>
+              <Input
+                checkBox={false}
+                transparent={true}
+
+                label='Last FY (Co2e)'
+                name='lastFY'
+                value={lastYear ? `${lastYear}` : ''}
+                setValue={(e: any) => setLastYear(Number(e.target.value))}
+                required={false}
+                type='number' />
+              <Input
+                disabled={true}
+                checkBox={false}
+                transparent={true}
+                label='Current FY (Co2e)'
+                name='currentFY'
+                value={scope1 + scope2 + scope3 ? `${scope1 + scope2 + scope3}` : ''}
+                setValue={() => { }}
+                required={false}
+                type='number' />
+            </div>
             <div className='relative mt-[3vh] h-[300px] w-[300px]'>
               <Doughnut
                 className='absolute z-[1] top-0 left-0 w-full h-full'

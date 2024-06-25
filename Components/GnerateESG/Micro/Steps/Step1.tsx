@@ -372,17 +372,35 @@ const Step1 = ({ title, nextstep }: Props) => {
           value={step1Data.geographicLocation.value}
           setValue={(e: any) => setStep1Data({ ...step1Data, geographicLocation: { ...step1Data.geographicLocation, value: e.target.value } })}
           type={step1Data.geographicLocation.type} />
-        <Input
-          checkBox={true}
-          transparent={true}
-          isAutoFill={step1Data.reportingYear.isAutoFill}
-          isArea={step1Data.reportingYear.isArea}
-          spaced={true}
-          label={step1Data.reportingYear.label}
-          name={'reportingYear'}
-          value={step1Data.reportingYear.value}
-          setValue={(e: any) => setStep1Data({ ...step1Data, reportingYear: { ...step1Data.reportingYear, value: e.target.value } })}
-          type={step1Data.reportingYear.type} />
+        <div className='mt-[40px]'>
+          <Label checked={step1Data.reportingYear.value}>{step1Data.reportingYear.label}</Label>
+          <div className='flex gap-[1rem] items-center'>
+            <Input
+              checkBox={true}
+              transparent={true}
+              isAutoFill={step1Data.reportingYear.isAutoFill}
+              isArea={step1Data.reportingYear.isArea}
+              name={'reportingYear'}
+              placeholder='From'
+              value={step1Data.reportingYear.value}
+              setValue={(e: any) => setStep1Data({ ...step1Data, reportingYear: { ...step1Data.reportingYear, value: e.target.value } })}
+              type={'number'} />
+            <span>
+              -
+            </span>
+            <Input
+              checkBox={true}
+              transparent={true}
+              placeholder='To'
+              isAutoFill={step1Data.reportingYear.isAutoFill}
+              isArea={step1Data.reportingYear.isArea}
+              name={'reportingYear'}
+              readOnly={true}
+              value={step1Data.reportingYear.value && Number(step1Data.reportingYear.value) + 1}
+              setValue={() => { }}
+              type={'number'} />
+          </div>
+        </div>
 
         <div className='w-full p-6 shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-md mt-[40px]'>
           <Label checked={step1Data.dedicatedPerson.value}>{step1Data.dedicatedPerson.label}</Label>

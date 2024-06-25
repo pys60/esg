@@ -321,6 +321,7 @@ type CommonProps = {
   transparent?: boolean,
   noBackground?: boolean,
   checkBox?: boolean,
+  readOnly?: boolean,
 }
 
 type ESGReportItem = 'esg-report' | 'environmental' | 'social' | 'governance' | 'it-security' | 'supply-chain' | 'un-sdgs'
