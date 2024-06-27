@@ -8,6 +8,16 @@ const environmental = {
     isAutoFill: false,
     isArea: false,
   },
+  organizationScope: {
+    label: `What are the organization's Scope 1 and Scope 2 GHG emissions, and, if applicable, Scope 3 emissions?`,
+    value: '',
+    value2: '',
+    value3: '',
+    type: 'text',
+    required: false,
+    isAutoFill: true,
+    isArea: true,
+  },
   identificationEnvironmentalSustainableActivitiesEU: {
     label: "How does your organization identify activities that qualify as environmentally sustainable under the EU Taxonomy Regulation?",
     value: "",
@@ -250,6 +260,15 @@ const environmental = {
   }
 }
 const social = {
+  picture: {
+    label: 'Upload Your Picture',
+    value: [],
+    type: 'file',
+    url: '',
+    required: false,
+    isAutoFill: false,
+    isArea: false,
+  },
   complianceEUtaxonomySupportingSocialObjectives: {
     label: "How do you ensure that your compliance with the EU Taxonomy also supports social objectives within your organization?",
     value: "",
@@ -492,6 +511,15 @@ const social = {
   }
 }
 const governance = {
+  picture: {
+    label: 'Upload Your Picture',
+    value: [],
+    type: 'file',
+    url: '',
+    required: false,
+    isAutoFill: false,
+    isArea: false,
+  },
   governanceStructureOverseeComplianceEUTaxonomy: {
     label: "How is governance structured within your organization to oversee compliance with the EU Taxonomy?",
     value: "",
