@@ -629,7 +629,12 @@ export const useGlobalStandardsStore = create<{
       name: 'Principles for Responsible Investment',
       short: 'PRI',
       selected: false
-    }
+    },
+    {
+      name: 'EU Taxonomy',
+      selected: false,
+      short: 'EU_TAXONOMY'
+    },
   ],
   setGlobalStandards: (globalStandards: {
     name: string;
@@ -715,12 +720,6 @@ export const useEnhancedStandardsStore = create<{
   value: 'CSRD',
   selected: false,
   file: 'CSRD'
-},
-{
-  name: 'EU Taxonomy',
-  value: 'EU',
-  selected: false,
-  file: 'EU_TAXONOMY'
 },
 {
   name: 'Marine Stewardship Council',
