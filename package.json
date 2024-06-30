@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.0.4",
+    "@million/lint": "^1.0.0-rc.76",
     "axios": "^1.7.2",
     "chartjs": "^0.3.24",
     "jwt-decode": "^4.0.0",

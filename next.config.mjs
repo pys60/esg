@@ -1,11 +1,13 @@
+import MillionLint from '@million/lint';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true
   },
   experimental: {
-    missingSuspenseWithCSRBailout: false,
-  },
+    missingSuspenseWithCSRBailout: false
+  }
 };
-
-export default nextConfig;
+export default MillionLint.next({
+  rsc: true
+})(nextConfig);

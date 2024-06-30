@@ -762,7 +762,7 @@ const governance = {
   }
 }
 
-export const EU_TAXONOMY = {
+export const EUT = {
   environmental,
   social,
   governance

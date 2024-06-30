@@ -1,6 +1,6 @@
 import { BRSR } from './brsr'
 import { ESRS } from './esrs'
-import { EU_TAXONOMY } from './eu-taxonomy'
+import { EUT } from './eu-taxonomy'
 import { GRI } from './gri'
 import { SASB } from './sasb'
 import { TCFD } from './tcfd'
@@ -11,7 +11,7 @@ const ESGQuestions =  {
   SASB,
   TCFD,
   BRSR,
-  EU_TAXONOMY
+  EUT
 }
 
 export default ESGQuestions

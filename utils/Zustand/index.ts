@@ -633,7 +633,7 @@ export const useGlobalStandardsStore = create<{
     {
       name: 'EU Taxonomy',
       selected: false,
-      short: 'EU_TAXONOMY'
+      short: 'EUT'
     },
   ],
   setGlobalStandards: (globalStandards: {
