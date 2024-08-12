@@ -6,7 +6,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Generate Powerful ESG Reports with ZeroCarbon",
-  description: "Create a comprehensive ESG report in minutes with ZeroCarbon's intuitive generator. Showcase your commitment to environmental, social, and governance best practices and unlock new growth opportunities.",
+  description:
+    "Create a comprehensive ESG report in minutes with ZeroCarbon's intuitive generator. Showcase your commitment to environmental, social, and governance best practices and unlock new growth opportunities.",
 };
 
 export default function RootLayout({

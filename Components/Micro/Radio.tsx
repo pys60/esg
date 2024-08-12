@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface RadioProps {
   label: string;
@@ -9,10 +9,19 @@ interface RadioProps {
   noRadio?: boolean;
 }
 
-const Radio: React.FC<RadioProps> = ({ label, name, id, checked, onChange, noRadio }) => {
+const Radio: React.FC<RadioProps> = ({
+  label,
+  name,
+  id,
+  checked,
+  onChange,
+  noRadio,
+}) => {
   return (
-    <div className={`${checked ? 'bg-[#dfeaff]' : 'bg-[#ececec]'}
-                    flex items-center p-4 py-2 border border-blue-500 rounded-md`}>
+    <div
+      className={`${checked ? "bg-[#dfeaff]" : "bg-[#ececec]"}
+                    flex items-center p-4 py-2 border border-blue-500 rounded-md`}
+    >
       <input
         type="radio"
         name={name}
@@ -27,6 +36,6 @@ const Radio: React.FC<RadioProps> = ({ label, name, id, checked, onChange, noRad
       </label>
     </div>
   );
-}
+};
 
 export default Radio;

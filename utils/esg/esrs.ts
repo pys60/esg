@@ -1,46 +1,49 @@
 const environmental = {
   picture: {
-    label: 'Upload Your Picture',
+    label: "Upload Your Picture",
     value: [],
-    type: 'file',
-    url: '',
+    type: "file",
+    url: "",
     required: false,
     isAutoFill: false,
     isArea: false,
   },
   organizationScope: {
     label: `What are the organization's Scope 1 and Scope 2 GHG emissions, and, if applicable, Scope 3 emissions?`,
-    value: '',
-    value2: '',
-    value3: '',
-    type: 'text',
+    value: "",
+    value2: "",
+    value3: "",
+    type: "text",
     required: false,
     isAutoFill: true,
     isArea: true,
   },
   totalEnergyConsumption: {
-    label: "What is your total energy consumption, and what percentage is from renewable sources?",
+    label:
+      "What is your total energy consumption, and what percentage is from renewable sources?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   assessManageSupplyChainEnvironmentalImpact: {
-    label: "How do you assess and manage the environmental impact of your supply chain?",
+    label:
+      "How do you assess and manage the environmental impact of your supply chain?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   greenhouseGasEmissionsReductionTargets: {
-    label: "What are your short and long-term targets for reducing greenhouse gas emissions?",
+    label:
+      "What are your short and long-term targets for reducing greenhouse gas emissions?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   energyEfficiencyMeasures: {
     label: "Describe any energy efficiency measures and their results.",
@@ -48,7 +51,7 @@ const environmental = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   climateChangeRiskManagement: {
     label: "How do you manage risks related to climate change?",
@@ -56,31 +59,34 @@ const environmental = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   waterUsageReductionInitiatives: {
-    label: "What initiatives are in place for reducing water usage and ensuring sustainable water management?",
+    label:
+      "What initiatives are in place for reducing water usage and ensuring sustainable water management?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   hazardousWasteManagementProcess: {
-    label: "Detail your company's process for hazardous waste management and disposal.",
+    label:
+      "Detail your company's process for hazardous waste management and disposal.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   biodiversityProtectionMeasures: {
-    label: "What measures are taken to protect and restore biodiversity in areas affected by your operations?",
+    label:
+      "What measures are taken to protect and restore biodiversity in areas affected by your operations?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   airNoisePollutionManagement: {
     label: "How do you address air and noise pollution from your operations?",
@@ -88,31 +94,34 @@ const environmental = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   environmentalConservationProjects: {
-    label: "Describe your company's involvement in environmental conservation projects.",
+    label:
+      "Describe your company's involvement in environmental conservation projects.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   environmentalConsiderationsInProductDesign: {
-    label: "How are environmental considerations integrated into your product design and development process?",
+    label:
+      "How are environmental considerations integrated into your product design and development process?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   packagingMinimizationStrategies: {
-    label: "What strategies are employed for packaging to minimize environmental impact?",
+    label:
+      "What strategies are employed for packaging to minimize environmental impact?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   circularEconomyPractices: {
     label: "Describe any circular economy practices your company follows.",
@@ -120,7 +129,7 @@ const environmental = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   soilContaminationRiskAssessment: {
     label: "How do you assess and address soil contamination risks?",
@@ -128,47 +137,52 @@ const environmental = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   sustainableResourceUseAndSourcingApproach: {
-    label: "What is your approach to sustainable resource use and raw material sourcing?",
+    label:
+      "What is your approach to sustainable resource use and raw material sourcing?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   stakeholderEngagementEnvironmentalPerformance: {
-    label: "How do you engage with and educate stakeholders about your environmental performance?",
+    label:
+      "How do you engage with and educate stakeholders about your environmental performance?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   GMOsPolicy: {
-    label: "What are your policies on the use of genetically modified organisms (GMOs)?",
+    label:
+      "What are your policies on the use of genetically modified organisms (GMOs)?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   renewableEnergyProjectsInvolvement: {
-    label: "Describe any renewable energy projects your company is involved in.",
+    label:
+      "Describe any renewable energy projects your company is involved in.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   ozoneDepletingSubstancesEmissionsMonitoring: {
-    label: "How do you monitor and manage emissions of ozone-depleting substances?",
+    label:
+      "How do you monitor and manage emissions of ozone-depleting substances?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   energyStorageConservationStrategies: {
     label: "Detail your strategies for energy storage and conservation.",
@@ -176,7 +190,7 @@ const environmental = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   carbonOffsettingAndCreditsApproach: {
     label: "What is your approach to carbon offsetting and carbon credits?",
@@ -184,15 +198,16 @@ const environmental = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   environmentalComplianceAcrossRegions: {
-    label: "How do you ensure environmental compliance across different regions?",
+    label:
+      "How do you ensure environmental compliance across different regions?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   lowCarbonEconomyTransitionStrategy: {
     label: "Describe your strategy for transitioning to a low-carbon economy.",
@@ -200,7 +215,7 @@ const environmental = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   environmentalExpenditureInvestments: {
     label: "What are your environmental expenditure and investments?",
@@ -208,23 +223,25 @@ const environmental = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   productLifecycleEnvironmentalImpactAssessment: {
-    label: "How do you assess the lifecycle environmental impact of your products/services?",
+    label:
+      "How do you assess the lifecycle environmental impact of your products/services?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   logisticsEnvironmentalImpactReductionInitiatives: {
-    label: "What initiatives do you have in place for reducing the environmental impact of logistics?",
+    label:
+      "What initiatives do you have in place for reducing the environmental impact of logistics?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   newProjectsEnvironmentalRiskManagement: {
     label: "How do you manage environmental risks in new projects?",
@@ -232,7 +249,7 @@ const environmental = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   biodiversityImpactAssessments: {
     label: "Describe any biodiversity impact assessments you conduct.",
@@ -240,15 +257,16 @@ const environmental = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   sustainableWaterSourcesSustainabilityApproach: {
-    label: "How do you ensure the sustainability of water sources for your operations?",
+    label:
+      "How do you ensure the sustainability of water sources for your operations?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   landUseAndForestConservationPolicies: {
     label: "What are your policies on land use and forest conservation?",
@@ -256,15 +274,16 @@ const environmental = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   wasteReductionAndRecyclingStrategies: {
-    label: "Describe your strategies for waste reduction and the promotion of recycling.",
+    label:
+      "Describe your strategies for waste reduction and the promotion of recycling.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   electronicWasteManagementApproach: {
     label: "How do you manage electronic waste?",
@@ -272,47 +291,52 @@ const environmental = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   sustainableAgriculturePracticesInSupplyChain: {
-    label: "What is your approach to sustainable agriculture practices in your supply chain?",
+    label:
+      "What is your approach to sustainable agriculture practices in your supply chain?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   stakeholderEngagementEnvironmentalGrievances: {
-    label: "How do you address environmental grievances from your stakeholders?",
+    label:
+      "How do you address environmental grievances from your stakeholders?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   environmentalMonitoringTechnologies: {
-    label: "What technologies do you employ for environmental monitoring and management?",
+    label:
+      "What technologies do you employ for environmental monitoring and management?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   sustainableFisheriesAndMarineResourceManagement: {
-    label: "Describe your approach to sustainable fisheries and marine resource management.",
+    label:
+      "Describe your approach to sustainable fisheries and marine resource management.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   supplyChainEnvironmentalImpactsAssessment: {
-    label: "How do you assess and mitigate the environmental impacts of your supply chain?",
+    label:
+      "How do you assess and mitigate the environmental impacts of your supply chain?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   plasticUseReductionPolicy: {
     label: "What is your policy on plastic use and reduction?",
@@ -320,7 +344,7 @@ const environmental = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   environmentalEducationAndAwarenessContributions: {
     label: "How do you contribute to environmental education and awareness?",
@@ -328,7 +352,7 @@ const environmental = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   environmentalNGOCollaborations: {
     label: "Detail any collaborations with environmental NGOs or initiatives.",
@@ -336,35 +360,36 @@ const environmental = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
-  }
-
-}
+    isArea: true,
+  },
+};
 const social = {
   picture: {
-    label: 'Upload Your Picture',
+    label: "Upload Your Picture",
     value: [],
-    type: 'file',
-    url: '',
+    type: "file",
+    url: "",
     required: false,
     isAutoFill: false,
     isArea: false,
   },
   workerHealthSafety: {
-    label: "How do you ensure worker health and safety, and what performance indicators do you use?",
+    label:
+      "How do you ensure worker health and safety, and what performance indicators do you use?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   diversityInclusionPolicies: {
-    label: "Describe your company's policies and practices on diversity and inclusion.",
+    label:
+      "Describe your company's policies and practices on diversity and inclusion.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   employeeMentalHealthSupport: {
     label: "How do you support employee mental health and well-being?",
@@ -372,7 +397,7 @@ const social = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   fairCompensationBenefits: {
     label: "What are your practices for fair compensation and benefits?",
@@ -380,15 +405,16 @@ const social = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   ethicalLaborPractices: {
-    label: "How do you ensure ethical labor practices and prevent forced and child labor in your supply chain?",
+    label:
+      "How do you ensure ethical labor practices and prevent forced and child labor in your supply chain?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   employeeTrainingDevelopment: {
     label: "Describe your approach to employee training and development.",
@@ -396,7 +422,7 @@ const social = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   workLifeBalanceSupport: {
     label: "How do you support work-life balance for your employees?",
@@ -404,7 +430,7 @@ const social = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   employeeFeedbackEngagement: {
     label: "What mechanisms are in place for employee feedback and engagement?",
@@ -412,23 +438,25 @@ const social = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   humanRightsIssuesAddressment: {
-    label: "How do you address human rights issues within your operations and supply chain?",
+    label:
+      "How do you address human rights issues within your operations and supply chain?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   communityDevelopmentPrograms: {
-    label: "What community development programs do you participate in or support?",
+    label:
+      "What community development programs do you participate in or support?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   customerDataPrivacyProtection: {
     label: "How do you ensure the privacy and protection of customer data?",
@@ -436,63 +464,70 @@ const social = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   consumerHealthSafetyInitiatives: {
-    label: "Describe your initiatives for promoting consumer health and safety.",
+    label:
+      "Describe your initiatives for promoting consumer health and safety.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   localCommunityEngagement: {
-    label: "How do you engage with local communities to address their concerns and needs?",
+    label:
+      "How do you engage with local communities to address their concerns and needs?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   discriminationHarassmentPolicies: {
-    label: "What policies do you have in place to prevent discrimination and harassment?",
+    label:
+      "What policies do you have in place to prevent discrimination and harassment?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   economicDevelopmentSupport: {
-    label: "How do you support the economic development of the communities in which you operate?",
+    label:
+      "How do you support the economic development of the communities in which you operate?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   volunteerProgramsCommunityService: {
-    label: "Describe your volunteer programs and employee involvement in community service.",
+    label:
+      "Describe your volunteer programs and employee involvement in community service.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   socialRisksAssessment: {
-    label: "How do you assess and manage social risks in new projects or expansions?",
+    label:
+      "How do you assess and manage social risks in new projects or expansions?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   indigenousRightsEngagement: {
-    label: "What is your approach to indigenous rights and engagement with indigenous communities?",
+    label:
+      "What is your approach to indigenous rights and engagement with indigenous communities?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   supplyChainSocialImpactsManagement: {
     label: "How do you address the social impacts of your supply chain?",
@@ -500,23 +535,25 @@ const social = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   educationSkillsDevelopmentContribution: {
-    label: "Describe your company's contribution to education and skills development.",
+    label:
+      "Describe your company's contribution to education and skills development.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   productServiceAccessibilityInclusiveness: {
-    label: "How do you ensure accessibility and inclusiveness of your products/services?",
+    label:
+      "How do you ensure accessibility and inclusiveness of your products/services?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   productSafetyQualityMeasures: {
     label: "What measures do you take to ensure product safety and quality?",
@@ -524,15 +561,16 @@ const social = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   supplierRelationshipsSocialResponsibility: {
-    label: "How do you manage relationships with suppliers to ensure social responsibility?",
+    label:
+      "How do you manage relationships with suppliers to ensure social responsibility?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   NGOSSocialInitiativesPartnerships: {
     label: "Describe any partnerships with NGOs or social initiatives.",
@@ -540,15 +578,16 @@ const social = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   socialGrievancesAddressment: {
-    label: "How do you address grievances related to social issues from your stakeholders?",
+    label:
+      "How do you address grievances related to social issues from your stakeholders?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   genderEqualityStanceApproach: {
     label: "What is your stance on and approach to gender equality?",
@@ -556,23 +595,25 @@ const social = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   disabledIndividualsIntegrationSupport: {
-    label: "How do you support the integration of disabled individuals in the workplace?",
+    label:
+      "How do you support the integration of disabled individuals in the workplace?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   employeeAssociationBargainingPolicy: {
-    label: "What is your policy on employee freedom of association and collective bargaining?",
+    label:
+      "What is your policy on employee freedom of association and collective bargaining?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   ethicalSourcingMaterials: {
     label: "How do you ensure the ethical sourcing of materials?",
@@ -580,15 +621,16 @@ const social = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   socialImpactAssessmentsOperations: {
-    label: "Describe any social impact assessments you conduct for your operations.",
+    label:
+      "Describe any social impact assessments you conduct for your operations.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   disasterReliefHumanitarianEffortsContribution: {
     label: "How do you contribute to disaster relief and humanitarian efforts?",
@@ -596,31 +638,34 @@ const social = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   culturalHeritagePreservationInitiatives: {
-    label: "What initiatives do you have for promoting cultural and heritage preservation?",
+    label:
+      "What initiatives do you have for promoting cultural and heritage preservation?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   localInfrastructureImpactManagement: {
-    label: "How do you address the impact of your operations on local infrastructure and services?",
+    label:
+      "How do you address the impact of your operations on local infrastructure and services?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   politicalContributionsLobbyingPolicies: {
-    label: "What is your stance and policies on political contributions and lobbying?",
+    label:
+      "What is your stance and policies on political contributions and lobbying?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   fairMarketingAdvertisingPractices: {
     label: "How do you ensure fair marketing and advertising practices?",
@@ -628,7 +673,7 @@ const social = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   customerSatisfactionFeedbackPolicies: {
     label: "Describe your policies on customer satisfaction and feedback.",
@@ -636,106 +681,117 @@ const social = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   environmentalSustainabilitySocialAspectsAddressment: {
-    label: "How do you address the social aspects of environmental sustainability?",
+    label:
+      "How do you address the social aspects of environmental sustainability?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   productServiceDesignInclusivityStrategies: {
-    label: "What strategies do you employ to ensure inclusivity in your product/service design?",
+    label:
+      "What strategies do you employ to ensure inclusivity in your product/service design?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   migrationLocalEmploymentImpactManagement: {
-    label: "How do you manage the impact of your operations on migration and local employment?",
+    label:
+      "How do you manage the impact of your operations on migration and local employment?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   digitalDividePromotionDigitalLiteracyInitiatives: {
-    label: "Describe your initiatives to address digital divide and promote digital literacy.",
+    label:
+      "Describe your initiatives to address digital divide and promote digital literacy.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
-  }
-}
+    isArea: true,
+  },
+};
 const governance = {
   picture: {
-    label: 'Upload Your Picture',
+    label: "Upload Your Picture",
     value: [],
-    type: 'file',
-    url: '',
+    type: "file",
+    url: "",
     required: false,
     isAutoFill: false,
     isArea: false,
   },
   sustainabilityGovernanceStructure: {
-    label: "How is sustainability governance structured within your organization?",
+    label:
+      "How is sustainability governance structured within your organization?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   corporateEthicsIntegrityPolicies: {
-    label: "Describe your policies and practices regarding corporate ethics and integrity.",
+    label:
+      "Describe your policies and practices regarding corporate ethics and integrity.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   internationalStandardsComplianceApproach: {
-    label: "How do you ensure compliance with international standards and local regulations?",
+    label:
+      "How do you ensure compliance with international standards and local regulations?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   sustainabilityRiskManagementApproach: {
-    label: "What is your approach to risk management, especially regarding sustainability risks?",
+    label:
+      "What is your approach to risk management, especially regarding sustainability risks?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   stakeholderEngagementProcess: {
-    label: "Describe your stakeholder engagement process and how feedback is incorporated.",
+    label:
+      "Describe your stakeholder engagement process and how feedback is incorporated.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   sustainabilityReportingTransparency: {
-    label: "How do you ensure transparency and accuracy in your sustainability reporting?",
+    label:
+      "How do you ensure transparency and accuracy in your sustainability reporting?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   anticorruptionBriberyEthicsPolicies: {
-    label: "What are your policies on anti-corruption, bribery, and business ethics?",
+    label:
+      "What are your policies on anti-corruption, bribery, and business ethics?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   conflictOfInterestManagementApproach: {
     label: "How do you manage conflicts of interest within your organization?",
@@ -743,55 +799,61 @@ const governance = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   ESGOversightLeadershipBoardStructure: {
-    label: "Describe your company's leadership and board structure regarding ESG oversight.",
+    label:
+      "Describe your company's leadership and board structure regarding ESG oversight.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   accountabilityEthicalBehaviorMechanisms: {
-    label: "How do you ensure accountability and ethical behavior at all levels of the organization?",
+    label:
+      "How do you ensure accountability and ethical behavior at all levels of the organization?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   whistleblowerProtectionEthicalReporting: {
-    label: "What mechanisms are in place for whistleblower protection and ethical reporting?",
+    label:
+      "What mechanisms are in place for whistleblower protection and ethical reporting?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   lobbyingActivitiesImpactManagement: {
-    label: "How do you assess and manage the impact of your lobbying activities?",
+    label:
+      "How do you assess and manage the impact of your lobbying activities?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   shareholderRightsEngagementPolicies: {
-    label: "Describe your policies and practices on shareholder rights and engagement.",
+    label:
+      "Describe your policies and practices on shareholder rights and engagement.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   dataSecurityCyberThreatProtectionApproach: {
-    label: "How do you ensure data security and protection against cyber threats?",
+    label:
+      "How do you ensure data security and protection against cyber threats?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   supplyChainGovernanceManagementApproach: {
     label: "What is your approach to managing supply chain governance?",
@@ -799,55 +861,61 @@ const governance = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   legalRegulatoryComplianceApproach: {
-    label: "How do you address legal and regulatory compliance across different jurisdictions?",
+    label:
+      "How do you address legal and regulatory compliance across different jurisdictions?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   ESGTrainingBoardManagement: {
-    label: "Describe any ESG-related training provided to your board and management.",
+    label:
+      "Describe any ESG-related training provided to your board and management.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   governancePracticesPerformanceMonitoring: {
-    label: "How do you monitor and evaluate the performance of your governance practices?",
+    label:
+      "How do you monitor and evaluate the performance of your governance practices?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   executiveCompensationSustainabilityAlignmentPolicy: {
-    label: "What is your policy on executive compensation and alignment with sustainability goals?",
+    label:
+      "What is your policy on executive compensation and alignment with sustainability goals?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   mergersAcquisitionsDivestituresSustainabilityImpactManagement: {
-    label: "How do you manage the sustainability impacts of mergers, acquisitions, and divestitures?",
+    label:
+      "How do you manage the sustainability impacts of mergers, acquisitions, and divestitures?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   ESGReportingInternalControlsAuditProcedures: {
-    label: "Describe your internal controls and audit procedures for ESG reporting.",
+    label:
+      "Describe your internal controls and audit procedures for ESG reporting.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   boardIndependenceDiversityApproach: {
     label: "How do you ensure the independence and diversity of your board?",
@@ -855,71 +923,79 @@ const governance = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   informationDisclosureStakeholderCommunicationPolicies: {
-    label: "What are your policies on information disclosure and communication with stakeholders?",
+    label:
+      "What are your policies on information disclosure and communication with stakeholders?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   politicalContributionsLobbyingActivitiesManagement: {
-    label: "How do you address and manage political contributions and lobbying activities?",
+    label:
+      "How do you address and manage political contributions and lobbying activities?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   regulatorEngagementSustainabilityIssuesStrategy: {
-    label: "Describe your strategy for engaging with regulators on sustainability issues.",
+    label:
+      "Describe your strategy for engaging with regulators on sustainability issues.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   ESGIntegrationBusinessStrategyPlanningApproach: {
-    label: "How do you incorporate ESG considerations into business strategy and planning?",
+    label:
+      "How do you incorporate ESG considerations into business strategy and planning?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   stakeholderInterestConflictManagementApproach: {
-    label: "What is your approach to managing conflicts between stakeholder interests?",
+    label:
+      "What is your approach to managing conflicts between stakeholder interests?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   intellectualPropertyProtectionSustainabilityPromotionApproach: {
-    label: "How do you ensure the protection of intellectual property while promoting sustainability?",
+    label:
+      "How do you ensure the protection of intellectual property while promoting sustainability?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   sustainabilityTargetsObjectivesSettingReviewProcesses: {
-    label: "Describe your processes for setting and reviewing sustainability targets and objectives.",
+    label:
+      "Describe your processes for setting and reviewing sustainability targets and objectives.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   jointVenturesPartnershipsSustainabilityManagement: {
-    label: "How do you manage the sustainability aspects of joint ventures and partnerships?",
+    label:
+      "How do you manage the sustainability aspects of joint ventures and partnerships?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   sustainabilityInvestmentDecisionApproach: {
     label: "What is your approach to sustainability in investment decisions?",
@@ -927,7 +1003,7 @@ const governance = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   governancePracticesEffectivenessAssessment: {
     label: "How do you assess the effectiveness of your governance practices?",
@@ -935,74 +1011,80 @@ const governance = {
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   sustainabilityCertificationsStandardsAdherence: {
-    label: "Describe any sustainability certifications, standards, or frameworks you adhere to.",
+    label:
+      "Describe any sustainability certifications, standards, or frameworks you adhere to.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   sustainabilityRisksOpportunitiesManagementReporting: {
-    label: "How do you manage and report on sustainability-related risks and opportunities?",
+    label:
+      "How do you manage and report on sustainability-related risks and opportunities?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   ESGIssueIdentificationPrioritizationApproach: {
-    label: "What is your approach to ESG issue identification and prioritization?",
+    label:
+      "What is your approach to ESG issue identification and prioritization?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   supplierEngagementESGIssuesDevelopment: {
-    label: "How do you ensure the engagement and development of your suppliers on ESG issues?",
+    label:
+      "How do you ensure the engagement and development of your suppliers on ESG issues?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   sustainableFinanceInvestmentPoliciesPractices: {
-    label: "Describe your policies and practices on sustainable finance and investment.",
+    label:
+      "Describe your policies and practices on sustainable finance and investment.",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   emergingTechnologiesEthicalConcernsAddressment: {
-    label: "How do you address ethical concerns related to emerging technologies?",
+    label:
+      "How do you address ethical concerns related to emerging technologies?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   regulatoryChangesEngagementResponsePractices: {
-    label: "What are your practices for engaging with and responding to regulatory changes?",
+    label:
+      "What are your practices for engaging with and responding to regulatory changes?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
+    isArea: true,
   },
   continuousImprovementESGPerformanceReporting: {
-    label: "How do you ensure continuous improvement in your ESG performance and reporting?",
+    label:
+      "How do you ensure continuous improvement in your ESG performance and reporting?",
     value: "",
     type: "text",
     required: false,
     isAutoFill: true,
-    isArea: true
-  }
+    isArea: true,
+  },
+};
 
-
-}
-
-export const ESRS = { environmental, social, governance }
+export const ESRS = { environmental, social, governance };

@@ -6,12 +6,12 @@ import { CGPR } from "./cgpr";
 import { DUBAI } from "./dubai";
 import { EQUATOR_PRINCIPLE } from "./equator-principle";
 import { EU_TAXONOMY } from "./eu-taxonomy";
-import { FCS } from './fcs';
-import { IIRC } from './iirc';
+import { FCS } from "./fcs";
+import { IIRC } from "./iirc";
 import { ISO26000 } from "./iso26000";
-import { MSC } from './msc';
+import { MSC } from "./msc";
 import { NFRD } from "./nfrd";
-import { PRI } from './pri';
+import { PRI } from "./pri";
 import { SA8000 } from "./sa8000";
 import { SFDR } from "./sfdr";
 import { UKSC } from "./uksc";
@@ -23,11 +23,11 @@ export const ENHANCED = {
   CDP_WATER, //3
   CGPR, //4
   DUBAI, //5
-  EQUATOR_PRINCIPLE,  //6
-  FCS,  //7
-  IIRC,//8
-  ISO26000,//9
-  MSC,//10
+  EQUATOR_PRINCIPLE, //6
+  FCS, //7
+  IIRC, //8
+  ISO26000, //9
+  MSC, //10
   NFRD, //11
   PRI, //12
   SA8000, //13
@@ -35,5 +35,5 @@ export const ENHANCED = {
   UKSC, //15
   UN_GLOBAL_COMPACT, //16
   EU_TAXONOMY, //17
-  ASX //18
-}
+  ASX, //18
+};

@@ -1,21 +1,20 @@
-'use client'
+"use client";
 
-import Input from '@/Components/Micro/Input';
-import PriButton from '@/Components/Micro/PriButton';
-import { useEsgReportDataStore, useUserStore } from '@/utils/Zustand';
-import { apiClient, apiClientFormDataWithAuth } from '@/utils/apiClient';
-import { Dialog, DialogPanel } from '@headlessui/react';
-import { useEffect, useState } from 'react';
-import { toast } from 'react-hot-toast';
+import Input from "@/Components/Micro/Input";
+import PriButton from "@/Components/Micro/PriButton";
+import { useEsgReportDataStore, useUserStore } from "@/utils/Zustand";
+import { apiClient, apiClientFormDataWithAuth } from "@/utils/apiClient";
+import { Dialog, DialogPanel } from "@headlessui/react";
+import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { GrPowerReset } from "react-icons/gr";
 import { IoMdSave } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 
 type Props = {
-  isOpen: boolean
-  setIsOpen: (isOpen: boolean) => void,
-
-}
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+};
 
 // interface Errors {
 //   bankName: string;
@@ -25,63 +24,66 @@ type Props = {
 //   ifscCode: string;
 // }
 
-
 const DetailForAIModal = (props: Props) => {
-  const { setUser } = useUserStore()
-  const { step1Data, setStep1Data } = useEsgReportDataStore()
+  const { setUser } = useUserStore();
+  const { step1Data, setStep1Data } = useEsgReportDataStore();
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const handleReset = async () => {
     try {
-      setLoading(true)
-      const data: any = await apiClient.post('auth/resetesg', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      }).json()
+      setLoading(true);
+      const data: any = await apiClient
+        .post("auth/resetesg", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .json();
 
       if (data.success) {
-        toast.success(data.message)
-        setUser()
-        window.location.reload()
+        toast.success(data.message);
+        setUser();
+        window.location.reload();
       }
-
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
     }
-    catch (err) {
-      console.log(err)
-    }
-    finally {
-      setLoading(false)
-    }
-  }
+  };
 
   const handleSave = async () => {
-    let stepData = {}
+    let stepData = {};
     if (!step1Data.companyName.value || !step1Data.companyBrief.value) {
-      toast('Company Name and Company Brief are required, for using the ZeroCarbon AI.', {
-        icon: 'ℹ️'
-      })
+      toast(
+        "Company Name and Company Brief are required, for using the ZeroCarbon AI.",
+        {
+          icon: "ℹ️",
+        }
+      );
     }
 
-    const stepDataKeys = Object.keys(step1Data)
+    const stepDataKeys = Object.keys(step1Data);
     try {
-      setLoading(true)
+      setLoading(true);
       for (let i = 0; i < stepDataKeys.length; i++) {
-        const key = stepDataKeys[i]
-        if (step1Data[key as keyof typeof step1Data].type === 'file') {
-          const file = step1Data[key as keyof typeof step1Data].value[0]
-          if (!file) continue
-          const formData = new FormData()
-          formData.append('banner', file)
-          const res: any = await apiClientFormDataWithAuth.post('item/uploadBanner', {
-            headers: {
-              'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            },
-            body: formData
-          }).json()
+        const key = stepDataKeys[i];
+        if (step1Data[key as keyof typeof step1Data].type === "file") {
+          const file = step1Data[key as keyof typeof step1Data].value[0];
+          if (!file) continue;
+          const formData = new FormData();
+          formData.append("banner", file);
+          const res: any = await apiClientFormDataWithAuth
+            .post("item/uploadBanner", {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+              body: formData,
+            })
+            .json();
 
-          const url = res.file.location
+          const url = res.file.location;
 
           stepData = {
             ...stepData,
@@ -89,9 +91,8 @@ const DetailForAIModal = (props: Props) => {
               question: step1Data[key as keyof typeof step1Data].label,
               url: url,
               type: step1Data[key as keyof typeof step1Data].type,
-            }
-          }
-
+            },
+          };
         } else {
           stepData = {
             ...stepData,
@@ -99,154 +100,190 @@ const DetailForAIModal = (props: Props) => {
               question: step1Data[key as keyof typeof step1Data].label,
               value: step1Data[key as keyof typeof step1Data].value,
               type: step1Data[key as keyof typeof step1Data].type,
-            }
-          }
+            },
+          };
         }
       }
 
-      const res: any = await apiClient.put('auth/esg/me', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify({
-          esgQNA: {
-            'esg-report': stepData
-          }
+      const res: any = await apiClient
+        .put("auth/esg/me", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            esgQNA: {
+              "esg-report": stepData,
+            },
+          }),
         })
-      }).json()
-      console.log(res)
+        .json();
+      console.log(res);
       if (res.success) {
-        toast.success('Saved Successfully')
-        props.setIsOpen(false)
+        toast.success("Saved Successfully");
+        props.setIsOpen(false);
       }
-    }
-    catch (err) {
-      console.log(err)
-      toast.error('Something went wrong')
+    } catch (err) {
+      console.log(err);
+      toast.error("Something went wrong");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true)
-        const res: any = await apiClient.get(`auth/esg/me/esg-report`, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        }).json()
+        setLoading(true);
+        const res: any = await apiClient
+          .get(`auth/esg/me/esg-report`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          })
+          .json();
 
-        const { value } = res
+        const { value } = res;
 
-        const stepDataKeys = Object.keys(value)
+        const stepDataKeys = Object.keys(value);
 
         let stepData = {
-          ...step1Data
-        }
+          ...step1Data,
+        };
 
         for (let i = 0; i < stepDataKeys.length; i++) {
-          const key = value[stepDataKeys[i]]
-          if (key.type === 'file') {
+          const key = value[stepDataKeys[i]];
+          if (key.type === "file") {
             stepData = {
               ...stepData,
               [stepDataKeys[i]]: {
                 ...stepData[stepDataKeys[i] as keyof typeof step1Data],
                 url: key.url,
-              }
-            }
+              },
+            };
           } else {
             stepData = {
               ...stepData,
               [stepDataKeys[i]]: {
                 ...stepData[stepDataKeys[i] as keyof typeof step1Data],
-                value: key.value
-              }
-            }
+                value: key.value,
+              },
+            };
           }
         }
-        setStep1Data(stepData)
-
-
+        setStep1Data(stepData);
       } catch (err) {
-        console.log(err)
+        console.log(err);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
-    fetchData()
-  }
-    , [])
+    };
+    fetchData();
+  }, []);
 
   return (
     <div>
-      <Dialog open={props.isOpen} as="div" className="relative z-10" onClose={() => {
-        !loading && handleSave()
-      }}>
-
+      <Dialog
+        open={props.isOpen}
+        as="div"
+        className="relative z-10"
+        onClose={() => {
+          !loading && handleSave();
+        }}
+      >
         <div className="fixed inset-0 overflow-y-auto">
           <div className="flex items-center justify-center text-center h-[100vh]">
             <DialogPanel className="w-[100vw] h-full p-[5rem] overflow-hidden text-left align-middle transition-all transform bg-black text-white shadow-xl ">
-
-              <div className='flex justify-between w-full'>
-                <p className='text-xl font-bold text-white'>Add your details for Better Experience</p>
-                <p onClick={() => !loading && handleSave()} className='cursor-pointer text-white'>X</p>
+              <div className="flex justify-between w-full">
+                <p className="text-xl font-bold text-white">
+                  Add your details for Better Experience
+                </p>
+                <p
+                  onClick={() => !loading && handleSave()}
+                  className="cursor-pointer text-white"
+                >
+                  X
+                </p>
               </div>
 
-              <div className='w-full flex flex-col gap-[1rem] mt-[2rem]'>
-                <div className='w-full flex flex-col gap-[1rem]'>
+              <div className="w-full flex flex-col gap-[1rem] mt-[2rem]">
+                <div className="w-full flex flex-col gap-[1rem]">
                   <Input
                     checkBox={true}
                     transparent={true}
-                    mode='dark'
+                    mode="dark"
                     isAutoFill={step1Data.companyName.isAutoFill}
                     isArea={step1Data.companyName.isArea}
                     spaced={true}
                     label={step1Data.companyName.label}
-                    name={'companyName'}
+                    name={"companyName"}
                     value={step1Data.companyName.value}
-                    setValue={(e: any) => setStep1Data({ ...step1Data, companyName: { ...step1Data.companyName, value: e.target.value } })}
+                    setValue={(e: any) =>
+                      setStep1Data({
+                        ...step1Data,
+                        companyName: {
+                          ...step1Data.companyName,
+                          value: e.target.value,
+                        },
+                      })
+                    }
                     required={step1Data.companyName.required}
-                    type={step1Data.companyName.type} />
+                    type={step1Data.companyName.type}
+                  />
                   <Input
                     checkBox={true}
                     transparent={true}
-                    mode='dark'
+                    mode="dark"
                     isAutoFill={step1Data.companyBrief.isAutoFill}
                     isArea={step1Data.companyBrief.isArea}
                     spaced={true}
                     label={step1Data.companyBrief.label}
-                    name={'companyBrief'}
+                    name={"companyBrief"}
                     value={step1Data.companyBrief.value}
-                    setValue={(e: any) => setStep1Data({ ...step1Data, companyBrief: { ...step1Data.companyBrief, value: e.target.value } })}
+                    setValue={(e: any) =>
+                      setStep1Data({
+                        ...step1Data,
+                        companyBrief: {
+                          ...step1Data.companyBrief,
+                          value: e.target.value,
+                        },
+                      })
+                    }
                     required={step1Data.companyBrief.required}
-                    type={step1Data.companyBrief.type} />
+                    type={step1Data.companyBrief.type}
+                  />
                 </div>
               </div>
 
-
-              <div className='flex gap-[1rem] justify-end w-full'>
-                <PriButton tooltip='Close' disabled={
-                  loading
-                } onClick={() => {
-                  handleSave()
-                }} className='mt-[2rem] w-[20px] text-black flex items-center justify-center'>
-                  <IoCloseSharp className='h-[20px] w-[20px]' />
+              <div className="flex gap-[1rem] justify-end w-full">
+                <PriButton
+                  tooltip="Close"
+                  disabled={loading}
+                  onClick={() => {
+                    handleSave();
+                  }}
+                  className="mt-[2rem] w-[20px] text-black flex items-center justify-center"
+                >
+                  <IoCloseSharp className="h-[20px] w-[20px]" />
                 </PriButton>
-                <PriButton tooltip='Reset' disabled={
-                  loading
-                } onClick={() => {
-                  handleReset()
-                }} className='mt-[2rem] w-[20px] text-black flex items-center justify-center'>
-                  <GrPowerReset className='h-[20px] w-[20px]' />
+                <PriButton
+                  tooltip="Reset"
+                  disabled={loading}
+                  onClick={() => {
+                    handleReset();
+                  }}
+                  className="mt-[2rem] w-[20px] text-black flex items-center justify-center"
+                >
+                  <GrPowerReset className="h-[20px] w-[20px]" />
                 </PriButton>
-                <PriButton tooltip='Save' disabled={
-                  loading
-                } onClick={() => {
-                  handleSave()
-                }} className='mt-[2rem] w-[20px] text-black flex items-center justify-center'>
-                  <IoMdSave className='h-[20px] w-[20px]' />
+                <PriButton
+                  tooltip="Save"
+                  disabled={loading}
+                  onClick={() => {
+                    handleSave();
+                  }}
+                  className="mt-[2rem] w-[20px] text-black flex items-center justify-center"
+                >
+                  <IoMdSave className="h-[20px] w-[20px]" />
                 </PriButton>
               </div>
             </DialogPanel>
@@ -254,8 +291,7 @@ const DetailForAIModal = (props: Props) => {
         </div>
       </Dialog>
     </div>
-  )
-}
+  );
+};
 
-
-export default DetailForAIModal
+export default DetailForAIModal;
