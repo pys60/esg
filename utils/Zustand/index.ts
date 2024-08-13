@@ -907,3 +907,11 @@ export const useEnhancedStandardsStore = create<{
     }[]
   ) => set({ enhancedStandards }),
 }));
+
+export const useShowSideBarStore = create<{
+  showSideBar: boolean;
+  setShowSideBar: (showSideBar: boolean) => void;
+}>((set) => ({
+  showSideBar: true,
+  setShowSideBar: (showSideBar) => set({ showSideBar }),
+}));

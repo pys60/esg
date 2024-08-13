@@ -1,5 +1,6 @@
 import cn from "classnames";
-import { Label, Radio } from "zerocarbonweb";
+import { Label } from "zerocarbonweb";
+import Radio from "../Radio";
 
 const RadioInput = ({
   label,
@@ -28,7 +29,11 @@ const RadioInput = ({
             id={option}
             checked={checked === option}
             label={option}
-            name={option}
+            name={label
+              .toLowerCase()
+              .replace(" ", "-")
+              .replace("?", "")
+              .replace(":", "")}
             onChange={() => setChecked(option)}
           />
         ))}

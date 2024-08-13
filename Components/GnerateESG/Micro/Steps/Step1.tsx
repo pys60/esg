@@ -28,6 +28,7 @@ import {
 } from "chart.js";
 import ESGBottomBar from "../ESGBottomBar";
 
+
 Chart.register(CategoryScale);
 Chart.register(LinearScale);
 Chart.register(BarElement);

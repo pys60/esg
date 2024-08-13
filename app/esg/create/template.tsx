@@ -3,15 +3,17 @@
 import Chat from "@/Components/GnerateESG/Micro/Chat";
 import ESGSideBar from "@/Components/GnerateESG/Micro/ESGSideBar";
 import Loading from "@/Components/Loading";
+import { useShowSideBarStore } from "@/utils/Zustand";
 import React, { Suspense, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 
 const Template = ({ children }: { children: React.ReactNode; params: any }) => {
   const [open, setOpen] = useState(true);
+  const { showSideBar } = useShowSideBarStore();
   return (
     <Suspense fallback={<Loading />}>
-      <div className="w-full relative justify-start min-h-[100vh] flex">
-        <ESGSideBar />
+      <div className="w-full relative bg-lightPri justify-start min-h-[100vh] flex">
+        {showSideBar && <ESGSideBar />}
         {!open && (
           <button
             onClick={() => setOpen!(!open)}

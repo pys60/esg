@@ -2,19 +2,173 @@
 
 import Input from "@/Components/Micro/Input";
 import Label from "@/Components/Micro/Label";
+import PriButton from "@/Components/Micro/PriButton";
 import RadioInput from "@/Components/Micro/RadioInput";
 import SubHead from "@/Components/Micro/SubHead";
 import { TableContainer } from "@/Components/Micro/Table";
+import { useShowSideBarStore } from "@/utils/Zustand";
+import { useRouter } from "next/navigation";
+import { ChangeEvent, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import StepsContainer from "../Micro/Steps/StepsContainer";
+import {
+  businessActivityTable,
+  complianceTable,
+  conflictOfInterestTable,
+  disclosureQuestionsTable,
+  employeeTable,
+  locationTable,
+  materialIssuesTable,
+  policyMaterialityTable,
+  policyReviewTable,
+  productServiceTable,
+  stakeholderGrievanceTable,
+  stakeholderGrievanceTable2,
+  trainingAndAwarenessTable,
+} from "./constants";
 import ReportPart2 from "./ReportPart2";
 
+import {
+  ArcElement,
+  BarElement,
+  CategoryScale,
+  Chart,
+  Legend,
+  LinearScale,
+  Title,
+  Tooltip,
+} from "chart.js";
+import { Bar, Doughnut } from "react-chartjs-2";
+
+Chart.register(CategoryScale);
+Chart.register(LinearScale);
+Chart.register(BarElement);
+Chart.register(Title);
+Chart.register(Tooltip);
+Chart.register(Legend);
+Chart.register(ArcElement, Tooltip, Legend);
+
 const BRSRComponent = () => {
+  const { setShowSideBar } = useShowSideBarStore();
+  const router = useRouter();
+  const [buisnessActivityState, setBuisnessActivityState] = useState(
+    businessActivityTable
+  );
+  const [productServiceTableState, setProductServiceTableState] =
+    useState(productServiceTable);
+  const [locationTableState, setLocationTableState] = useState(locationTable);
+  const [employeeTableState, setEmployeeTableState] = useState(employeeTable);
+  const [stakeholderGrievanceTableState, setStakeholderGrievanceTableState] =
+    useState(stakeholderGrievanceTable);
+  const [stakeholderGrievanceTable2State, setStakeholderGrievanceTable2State] =
+    useState(stakeholderGrievanceTable2);
+  const [materialIssuesTableState, setMaterialIssuesTableState] =
+    useState(materialIssuesTable);
+  const [disclosureQuestionsTableState, setDisclosureQuestionsTableState] =
+    useState(disclosureQuestionsTable);
+  const [policyReviewTableState, setPolicyReviewTableState] =
+    useState(policyReviewTable);
+  const [policyMaterialityTableState, setPolicyMaterialityTableState] =
+    useState(policyMaterialityTable);
+  const [trainingAndAwarenessTableState, setTrainingAndAwarenessTableState] =
+    useState(trainingAndAwarenessTable);
+  const [complianceTableState, setComplianceTableState] =
+    useState(complianceTable);
+  const [conflictOfInterestTableState, setConflictOfInterestTableState] =
+    useState(conflictOfInterestTable);
+
+  const [inputState, setInputState] = useState({
+    cin: "",
+    name: "",
+    year: "",
+    registeredOffice: "",
+    corporateAddress: "",
+    email: "",
+    telephone: "",
+    website: "",
+    financialYear: "",
+    reportingPeriod: "",
+    stockExchange: "",
+    paidUpCapital: "",
+    contactName: "",
+    contactTelephone: "",
+    contactEmail: "",
+    reportingBoundary: "",
+    marketServed: "",
+    typeOfCustomers: "",
+    detailsAtEnd: "",
+    boardsOfDirectors: "",
+    numberOfWomenInBoard: "",
+    percentageOfWomenInBoard: "",
+    numberOfWomenInKeyManagement: "",
+    percentageOfWomenInKeyManagement: "",
+    numberOfEmployeesAndWorkersMale2021: "",
+    numberOfEmployeesAndWorkersFemale2021: "",
+    numberOfEmployeesAndWorkersMale2022: "",
+    numberOfEmployeesAndWorkersFemale2022: "",
+    numberOfEmployeesAndWorkersMale2023: "",
+    numberOfEmployeesAndWorkersFemale2023: "",
+    nameOfHolding: "",
+    typeOfHolding: "",
+    percentageOfShares: "",
+    participateInBusinessResponsibility: "",
+    isCSRApplicable: "",
+    turnOverCSR: "",
+    netWorthCSR: "",
+    complianceWithListing: "",
+    describeInBreifAntiCorruption: "",
+    webLinkAntiCorruption: "",
+    caseDetails: "",
+    regulatoryAgency: "",
+    detailsOfCorrectiveAction: "",
+    totalNumberAwarenessProgrammes: "",
+    totalNumberParticipants: "",
+    antiCorruptionPolicy: "",
+    antiCorruptionPolicyLeadership: "",
+  });
+  const [radioState, setRadioState] = useState({
+    participateInBusinessResponsibility: "Yes",
+    isCSRApplicable: "Yes",
+    antiCorruptionPolicy: "Yes",
+    antiCorruptionPolicyLeadership: "Yes",
+  });
+
+  const valuConfig = (key: keyof typeof inputState) => {
+    const obj = {
+      value: inputState[key],
+      setValue: (
+        value: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>
+      ) => {
+        setInputState((prevState) => ({
+          ...prevState,
+          [key]: value.target.value,
+        }));
+      },
+    };
+    return obj;
+  };
+
+  const setRadioConfig = (key: keyof typeof radioState) => {
+    return {
+      checked: radioState[key as keyof typeof radioState],
+      setChecked: (value: string) => {
+        setRadioState((prevState) => ({
+          ...prevState,
+          [key]: value,
+        }));
+      },
+    };
+  };
+
+  useEffect(() => {
+    setShowSideBar(false);
+  }, []);
+
   return (
-    <StepsContainer title={"BRSR Report"}>
+    <StepsContainer pt="0" title={"BRSR Report"}>
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("cin")}
         type={"text"}
         label="Corporate Identity Number (CIN) of the Listed Entity"
         checkBox
@@ -23,8 +177,7 @@ const BRSRComponent = () => {
       />
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("name")}
         type={"text"}
         label="Name of the Listed Entity"
         checkBox
@@ -33,8 +186,7 @@ const BRSRComponent = () => {
       />
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("year")}
         type={"text"}
         label="Year of incorporation"
         checkBox
@@ -43,8 +195,7 @@ const BRSRComponent = () => {
       />
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("registeredOffice")}
         type={"text"}
         label="Registered office address"
         checkBox
@@ -53,8 +204,7 @@ const BRSRComponent = () => {
       />
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("corporateAddress")}
         type={"text"}
         label="Corporate address"
         checkBox
@@ -63,8 +213,7 @@ const BRSRComponent = () => {
       />
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("email")}
         type={"text"}
         label="E-mail"
         checkBox
@@ -73,8 +222,7 @@ const BRSRComponent = () => {
       />
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("telephone")}
         type={"text"}
         label="Telephone"
         checkBox
@@ -83,8 +231,7 @@ const BRSRComponent = () => {
       />
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("website")}
         type={"text"}
         label="Website"
         checkBox
@@ -93,8 +240,7 @@ const BRSRComponent = () => {
       />
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("financialYear")}
         type={"text"}
         label="Financial year for which reporting is being done"
         checkBox
@@ -103,8 +249,7 @@ const BRSRComponent = () => {
       />
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("reportingPeriod")}
         type={"text"}
         label="Name of the Stock Exchange(s) where shares are listed"
         checkBox
@@ -113,8 +258,7 @@ const BRSRComponent = () => {
       />
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("stockExchange")}
         type={"text"}
         label="Paid-up Capital"
         checkBox
@@ -128,24 +272,21 @@ const BRSRComponent = () => {
         </Label>
         <div className="mt-[1rem] flex gap-[1rem]">
           <Input
-            setValue={() => {}}
-            value={""}
+            {...valuConfig("contactName")}
             type={"text"}
             label="Name"
             placeholder="Enter CIN"
             transparent
           />
           <Input
-            setValue={() => {}}
-            value={""}
+            {...valuConfig("contactTelephone")}
             type={"text"}
             label="Telephone"
             placeholder="Enter CIN"
             transparent
           />
           <Input
-            setValue={() => {}}
-            value={""}
+            {...valuConfig("contactEmail")}
             type={"text"}
             label="Email"
             placeholder="Enter CIN"
@@ -155,8 +296,7 @@ const BRSRComponent = () => {
       </div>
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("reportingBoundary")}
         type={"text"}
         label="Reporting boundary - Are the disclosures under this report made on a standalone basis (i.e. only for the entity) or on a consolidated basis (i.e. for the entity and all the entities
 which form a part of its consolidated financial statements, taken together)."
@@ -177,35 +317,8 @@ which form a part of its consolidated financial statements, taken together)."
           maxHeight="400px"
           className="my-8 border-2 border-blue-200 rounded"
           theme="light"
-          config={[
-            [
-              { content: "S. No.", className: "font-semibold " },
-              {
-                content: "Description of main Activity",
-                className: "font-semibold ",
-              },
-              {
-                content: "Description of Business Activity",
-                className: "font-semibold ",
-              },
-              {
-                content: "% of Turnover of the Entity",
-                className: "font-semibold ",
-              },
-            ],
-            [
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-            ],
-            [
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-            ],
-          ]}
+          config={buisnessActivityState}
+          setConfig={setBuisnessActivityState}
         />
       </div>
       <div className="mt-[40px]">
@@ -217,41 +330,8 @@ which form a part of its consolidated financial statements, taken together)."
           maxHeight="400px"
           className="my-8 border-2 border-blue-200 rounded"
           theme="light"
-          config={[
-            [
-              { content: "S. No.", className: "font-semibold " },
-              {
-                content: "Product/Service",
-                className: "font-semibold ",
-              },
-              {
-                content: "NIC Code",
-                className: "font-semibold ",
-              },
-              {
-                content: "% of Total Turnover Contributed",
-                className: "font-semibold ",
-              },
-            ],
-            [
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-            ],
-            [
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-            ],
-            [
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-            ],
-          ]}
+          config={productServiceTableState}
+          setConfig={setProductServiceTableState}
         />
       </div>
       <SubHead>Operations</SubHead>
@@ -264,45 +344,14 @@ which form a part of its consolidated financial statements, taken together)."
           maxHeight="400px"
           className="my-8 border-2 border-blue-200 rounded"
           theme="light"
-          config={[
-            [
-              {
-                content: "Location",
-                className: "font-semibold ",
-              },
-              {
-                content: "Number of plants",
-                className: "font-semibold ",
-              },
-              {
-                content: "Number of offices",
-                className: "font-semibold ",
-              },
-              {
-                content: "Total",
-                className: "font-semibold ",
-              },
-            ],
-            [
-              { content: "National" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-            ],
-            [
-              { content: "International" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-            ],
-          ]}
+          config={locationTableState}
+          setConfig={setLocationTableState}
         />
       </div>
       <SubHead>Market served by Entity</SubHead>
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("marketServed")}
         type={"text"}
         label="What is the contribution of exports as a percentage of the total turnover of the entity?"
         checkBox
@@ -311,8 +360,7 @@ which form a part of its consolidated financial statements, taken together)."
       />
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("typeOfCustomers")}
         type={"text"}
         label="A brief on types of customers"
         checkBox
@@ -322,8 +370,7 @@ which form a part of its consolidated financial statements, taken together)."
       <SubHead>Employees</SubHead>
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("detailsAtEnd")}
         type={"text"}
         label="Details as at the end of Financial Year"
         checkBox
@@ -338,104 +385,59 @@ which form a part of its consolidated financial statements, taken together)."
           maxHeight="600px"
           className="my-8 border-2 border-blue-200 rounded"
           theme="light"
-          config={[
-            [
-              { content: "S. No.", className: "font-semibold " },
-              {
-                content: "Particulars",
-                className: "font-semibold ",
-              },
-              { content: "Total", className: "font-semibold " },
-              { content: "Male", className: "font-semibold " },
-              {
-                content: "Male Percentage(%)",
-                className: "font-semibold ",
-              },
-              {
-                content: "Female No.",
-                className: "font-semibold ",
-              },
-              {
-                content: "Female Percentage (%)",
-                className: "font-semibold ",
-              },
-            ],
-            [
-              {
-                content: "EMPLOYEES",
-                colSpan: 7,
-                className: "font-bold text-center bg-white",
-              },
-            ],
-            [
-              { content: "1" },
-              { content: "Permanent" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-            ],
-            [
-              { content: "2" },
-              { content: "Other than permanent" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-            ],
-            [
-              { content: "3" },
-              { content: "Total Employees" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-            ],
-            [
-              {
-                content: "WORKERS",
-                colSpan: 7,
-                className: "font-bold text-center bg-white",
-              },
-            ],
-            [
-              { content: "4" },
-              { content: "Permanent" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-            ],
-            [
-              { content: "5" },
-              { content: "Other than Permanent" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-            ],
-            [
-              { content: "6" },
-              { content: "Total Workers" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-              { content: "" },
-            ],
-          ]}
+          config={employeeTableState}
+          setConfig={setEmployeeTableState}
         />
+      </div>
+      <div className="flex w-full mt-[40px] items-center gap-[2vw]">
+        {/* BAR CHART */}
+        <div className="w-full">
+          <Bar
+            data={{
+              labels: ["Total", "FULL TIME", "PART TIME"],
+
+              datasets: [
+                {
+                  label: "",
+                  data: [
+                    parseInt(employeeTableState[4][2].content),
+                    parseInt(employeeTableState[2][2].content),
+                    parseInt(employeeTableState[3][2].content),
+                  ],
+                  backgroundColor: ["#f3b344", "#67e09c", "#3e8df3"],
+                  barThickness: 60,
+                  animations: {
+                    y: {
+                      easing: "easeInOutElastic",
+                    },
+                  },
+                  borderColor: ["#f3b344", "#67e09c", "#3e8df3"],
+                  borderWidth: 1,
+                },
+              ],
+            }}
+            height={400}
+            width={600}
+            options={{
+              responsive: true,
+              maintainAspectRatio: false,
+
+              plugins: {
+                legend: {
+                  position: "top" as const,
+                },
+                colors: {
+                  enabled: true,
+                },
+              },
+            }}
+          />
+        </div>
       </div>
       <SubHead>Participation/Inclusion/Representation of Women</SubHead>
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("boardsOfDirectors")}
         type={"text"}
         label="Boards of Directors"
         checkBox
@@ -446,16 +448,14 @@ which form a part of its consolidated financial statements, taken together)."
         <Label checked>Boards of Directors</Label>
         <div className="flex mt-[40px] gap-[1rem]">
           <Input
-            setValue={() => {}}
-            value={""}
+            {...valuConfig("numberOfWomenInBoard")}
             type={"text"}
             label="Number of Women"
             placeholder="Enter Total"
             transparent
           />
           <Input
-            setValue={() => {}}
-            value={""}
+            {...valuConfig("percentageOfWomenInBoard")}
             type={"text"}
             label="Percentage of Women"
             placeholder="Enter Total"
@@ -467,21 +467,55 @@ which form a part of its consolidated financial statements, taken together)."
         <Label checked>Key Management Personnel</Label>
         <div className="flex mt-[40px] gap-[1rem]">
           <Input
-            setValue={() => {}}
-            value={""}
+            {...valuConfig("numberOfWomenInKeyManagement")}
             type={"text"}
             label="Number of Women"
             placeholder="Enter Total"
             transparent
           />
           <Input
-            setValue={() => {}}
-            value={""}
+            {...valuConfig("percentageOfWomenInKeyManagement")}
             type={"text"}
             label="Percentage of Women"
             placeholder="Enter Total"
             transparent
           />
+        </div>
+      </div>
+      <div className="w-full  h-[300px] mt-[40px]">
+        <div className="relative h-[300px] w-fit">
+          <Doughnut
+            data={{
+              labels: ["Board of Directors", "Key Management Personnel"],
+              datasets: [
+                {
+                  data: [
+                    inputState.numberOfWomenInBoard || 50,
+                    inputState.numberOfWomenInKeyManagement || 50,
+                  ],
+                  backgroundColor: ["#00B8D9", "#FFA800"],
+                  borderColor: ["#00B8D9", "#FFA800"],
+                  borderWidth: 1,
+                },
+              ],
+            }}
+            options={{
+              rotation: -90,
+              circumference: 180,
+              plugins: {
+                legend: {
+                  display: false,
+                },
+              },
+            }}
+          />
+          <div className="absolute top-0 left-0 flex items-center justify-center w-full h-full">
+            <p className="text-[16px] mt-[100px]">
+              {"Total: " +
+                (parseInt(inputState.numberOfWomenInBoard || "0") +
+                  parseInt(inputState.numberOfWomenInKeyManagement || "0"))}
+            </p>
+          </div>
         </div>
       </div>
       <div className="mt-[40px]">
@@ -512,16 +546,14 @@ which form a part of its consolidated financial statements, taken together)."
         </Label>
         <div className="flex mt-[20px] gap-[1rem]">
           <Input
-            setValue={() => {}}
-            value={""}
+            {...valuConfig("numberOfEmployeesAndWorkersMale2022")}
             type={"text"}
             label="Male"
             placeholder="Enter Total"
             transparent
           />
           <Input
-            setValue={() => {}}
-            value={""}
+            {...valuConfig("numberOfEmployeesAndWorkersFemale2022")}
             type={"text"}
             label="Female"
             placeholder="Enter Total"
@@ -533,18 +565,16 @@ which form a part of its consolidated financial statements, taken together)."
         </Label>
         <div className="flex mt-[20px] gap-[1rem]">
           <Input
-            setValue={() => {}}
-            value={""}
             type={"text"}
             label="Male"
+            {...valuConfig("numberOfEmployeesAndWorkersMale2021")}
             placeholder="Enter Total"
             transparent
           />
           <Input
-            setValue={() => {}}
-            value={""}
             type={"text"}
             label="Female"
+            {...valuConfig("numberOfEmployeesAndWorkersFemale2021")}
             placeholder="Enter Total"
             transparent
           />
@@ -555,8 +585,7 @@ which form a part of its consolidated financial statements, taken together)."
       </SubHead>
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("nameOfHolding")}
         type={"text"}
         label="Name of the holding / subsidiary /associate companies / joint ventures"
         checkBox
@@ -564,8 +593,7 @@ which form a part of its consolidated financial statements, taken together)."
       />
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("typeOfHolding")}
         type={"text"}
         label="Indicate whether holding/ Subsidiary/Associate/ JointVenture"
         checkBox
@@ -573,8 +601,7 @@ which form a part of its consolidated financial statements, taken together)."
       />
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("percentageOfShares")}
         type={"text"}
         label="% of shares held by listed entity"
         checkBox
@@ -583,20 +610,17 @@ which form a part of its consolidated financial statements, taken together)."
       <RadioInput
         label="Does the entity indicated above, participate in the Business Responsibility initiatives of the listed entity?"
         options={["Yes", "No"]}
-        checked={"Yes"}
-        setChecked={() => {}}
+        {...setRadioConfig("participateInBusinessResponsibility")}
       />
       <SubHead secText>CSR Details</SubHead>
       <RadioInput
         label="Whether CSR is applicable as per section 135 of Companies Act, 2013"
         options={["Yes", "No"]}
-        checked={"Yes"}
-        setChecked={() => {}}
+        {...setRadioConfig("isCSRApplicable")}
       />
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("turnOverCSR")}
         type={"text"}
         label="Turnover (in Rs.)"
         checkBox
@@ -604,8 +628,7 @@ which form a part of its consolidated financial statements, taken together)."
       />
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("netWorthCSR")}
         type={"text"}
         label="Net worth (in Rs.)"
         checkBox
@@ -614,8 +637,7 @@ which form a part of its consolidated financial statements, taken together)."
       <SubHead secText>Transparency and Disclosures Compliances</SubHead>
       <Input
         spaced
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("complianceWithListing")}
         type={"text"}
         label="Complaints/Grievances on any of the principles (Principles 1 to 9) under the National
 Guidelines on Responsible Business Conduct"
@@ -626,187 +648,15 @@ Guidelines on Responsible Business Conduct"
         maxHeight="600px"
         className="my-8 border-2 border-blue-200 rounded"
         theme="light"
-        config={[
-          [
-            {
-              content: "Stakeholder group from whom complaint is received",
-              rowSpan: 2,
-              className: "font-semibold  align-middle",
-            },
-            {
-              content:
-                "Grievance Redressal Mechanism in Place (Yes/No) (If Yes, then provide web-link for grievance redress policy)",
-              rowSpan: 2,
-              className: "font-semibold  align-middle",
-            },
-            {
-              content: "FY Current Financial Year",
-              colSpan: 3,
-              className: "font-semibold bg-green-100 text-center",
-            },
-            {
-              content: "FY Previous Financial Year",
-              colSpan: 3,
-              className: "font-semibold bg-green-100 text-center",
-            },
-          ],
-          [
-            {
-              content: "Number of complaints filed during the year",
-              className: "font-semibold  text-center",
-            },
-            {
-              content:
-                "Number of complaints pending resolution at close of the year",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "Remarks",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "Number of complaints filed during the year",
-              className: "font-semibold  text-center",
-            },
-            {
-              content:
-                "Number of complaints pending resolution at close of the year",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "Remarks",
-              className: "font-semibold  text-center",
-            },
-          ],
-          [
-            { content: "Communities" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            { content: "Investors (other than shareholders)" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-        ]}
+        config={stakeholderGrievanceTableState}
+        setConfig={setStakeholderGrievanceTableState}
       />
       <TableContainer
         maxHeight="600px"
         className="my-8 border-2 border-blue-200 rounded"
         theme="light"
-        config={[
-          [
-            {
-              content: "Stakeholder group from whom complaint is received",
-              rowSpan: 2,
-              className: "font-semibold  align-middle",
-            },
-            {
-              content:
-                "Grievance Redressal Mechanism in Place (Yes/No) (If Yes, then provide web-link for grievance redress policy)",
-              rowSpan: 2,
-              className: "font-semibold  align-middle",
-            },
-            {
-              content: "FY Current Financial Year",
-              colSpan: 3,
-              className: "font-semibold bg-green-100 text-center",
-            },
-            {
-              content: "FY Previous Financial Year",
-              colSpan: 3,
-              className: "font-semibold bg-green-100 text-center",
-            },
-          ],
-          [
-            {
-              content: "Number of complaints filed during the year",
-              className: "font-semibold  text-center",
-            },
-            {
-              content:
-                "Number of complaints pending resolution at close of the year",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "Remarks",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "Number of complaints filed during the year",
-              className: "font-semibold  text-center",
-            },
-            {
-              content:
-                "Number of complaints pending resolution at close of the year",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "Remarks",
-              className: "font-semibold  text-center",
-            },
-          ],
-          [
-            { content: "Stakeholders" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            { content: "Employees and Workers" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            { content: "Customers" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            { content: "Value Chain Partners" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            { content: "other (please specify)" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-        ]}
+        config={stakeholderGrievanceTable2State}
+        setConfig={setStakeholderGrievanceTable2State}
       />
       <Label checked spaced>
         Overview of the entity’s material responsible business conduct issues
@@ -822,56 +672,8 @@ Guidelines on Responsible Business Conduct"
         maxHeight="600px"
         className="my-8 border-2 border-blue-200 rounded"
         theme="light"
-        config={[
-          [
-            { content: "S.No", className: "font-semibold " },
-            {
-              content: "Material issue Identified",
-              className: "font-semibold ",
-            },
-            {
-              content: "Indicate whether risk or opportunity (R/O)",
-              className: "font-semibold ",
-            },
-            {
-              content: "Rationale for identifying the risk / opportunity",
-              className: "font-semibold ",
-            },
-            {
-              content: "In case of risk, approach to adapt or mitigate",
-              className: "font-semibold ",
-            },
-            {
-              content:
-                "Financial implications of the risk or opportunity (Indicate positive or negative implications)",
-              className: "font-semibold ",
-            },
-          ],
-          [
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-        ]}
+        config={materialIssuesTableState}
+        setConfig={setMaterialIssuesTableState}
       />
       <SubHead secText>Management and process disclosures</SubHead>
       <Label noCheckbox spaced>
@@ -883,309 +685,15 @@ Guidelines on Responsible Business Conduct"
         maxHeight="800px"
         className="my-8 border-2 border-blue-200 rounded"
         theme="light"
-        config={[
-          [
-            {
-              content: "Disclosure Questions",
-              className: "font-semibold ",
-              colSpan: 1,
-            },
-            {
-              content: "P1",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "P2",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "P3",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "P4",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "P5",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "P6",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "P7",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "P8",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "P9",
-              className: "font-semibold  text-center",
-            },
-          ],
-          [
-            {
-              content: "Policy and management processes",
-              className: "font-semibold",
-              colSpan: 10,
-            },
-          ],
-          [
-            {
-              content:
-                "1. Whether your entity's policy/policies cover each principle and its core elements of the NGRBCs. (Yes/No)",
-              className: "pl-4",
-            },
-            {
-              content: "YES",
-              className: "text-center text-green-600 font-semibold",
-            },
-            {
-              content: "NO",
-              className: "text-center text-red-600 font-semibold",
-            },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-          ],
-          [
-            {
-              content: "b. Has the policy been approved by the Board? (Yes/No)",
-              className: "pl-4",
-            },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-          ],
-          [
-            {
-              content: "c. Web Link of the Policies, if available",
-              className: "pl-4",
-            },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-          ],
-          [
-            {
-              content:
-                "2. Whether the entity has translated the policy into procedures. (Yes / No)",
-              className: "pl-4",
-            },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-          ],
-          [
-            {
-              content:
-                "3. Do the enlisted policies extend to your value chain partners? (Yes/No)",
-              className: "pl-4",
-            },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-          ],
-          [
-            {
-              content:
-                "4. Name of the national and international codes/certifications/labels/ standards (e.g. Forest Stewardship Council, Fairtrade, Rainforest Alliance, Trustea) standards (e.g. SA 8000, OHSAS, ISO, BIS) adopted by your entity and mapped to each principle.",
-              className: "pl-4",
-            },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-          ],
-          [
-            {
-              content:
-                "5. Specific commitments, goals and targets set by the entity with defined timelines, if any.",
-              className: "pl-4",
-            },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-          ],
-          [
-            {
-              content:
-                "6. Performance of the entity against the specific commitments, goals and targets along-with reasons in case the same are not met.",
-              className: "pl-4",
-            },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-            { content: "", className: "text-center" },
-          ],
-          [
-            {
-              content: "Governance, leadership and oversight",
-              className: "font-semibold",
-              colSpan: 10,
-            },
-          ],
-          [
-            {
-              content:
-                "7. Statement by director responsible for the business responsibility report, highlighting ESG related challenges, targets and achievements (listed entity has flexibility regarding the placement of this disclosure)",
-              className: "pl-4",
-              colSpan: 10,
-            },
-          ],
-          [
-            {
-              content:
-                "8. Details of the highest authority responsible for implementation and oversight of the Business Responsibility policy (ies).",
-              className: "pl-4",
-              colSpan: 1,
-            },
-            {
-              content: "",
-              className: "pl-4",
-              colSpan: 9,
-            },
-          ],
-          [
-            {
-              content:
-                "9. Does the entity have a specified Committee of the Board/ Director responsible for decision making on sustainability related issues? (Yes / No). If yes, provide details.",
-              className: "pl-4",
-              colSpan: 1,
-            },
-            {
-              content: "",
-              className: "pl-4",
-              colSpan: 9,
-            },
-          ],
-        ]}
+        config={disclosureQuestionsTableState}
+        setConfig={setDisclosureQuestionsTableState}
       />
       <TableContainer
         maxHeight="800px"
         className="my-8 border-2 border-blue-200 rounded"
         theme="light"
-        config={[
-          [
-            {
-              content: "Questions",
-              colSpan: 19,
-              className: "font-semibold ",
-            },
-          ],
-          [
-            {
-              content: "Subject for Review",
-              rowSpan: 2,
-              className: "font-semibold  align-middle",
-            },
-            {
-              content:
-                "Indicate whether review was undertaken by Director / Committee of the Board/ Any other Committee",
-              colSpan: 9,
-              className: "font-semibold  text-center",
-            },
-            {
-              content:
-                "Frequency (Annually/ Half yearly/Quarterly/ Any other – please specify)",
-              colSpan: 9,
-              className: "font-semibold  text-center",
-            },
-          ],
-          [
-            ...Array(9)
-              .fill(0)
-              .map((_, i) => ({
-                content: `P${i + 1}`,
-                className: "font-semibold  text-center",
-              })),
-            ...Array(9)
-              .fill(0)
-              .map((_, i) => ({
-                content: `P${i + 1}`,
-                className: "font-semibold  text-center",
-              })),
-          ],
-          [
-            {
-              content:
-                "Performance against above policies and follow up action",
-            },
-            ...Array(18).fill({ content: "" }),
-          ],
-          [
-            {
-              content:
-                "Compliance with statutory requirements of relevance to the principles, and, rectification of any non-compliances",
-            },
-            ...Array(18).fill({ content: "" }),
-          ],
-          [
-            {
-              content:
-                "11. Has the entity carried out independent assessment/ evaluation of the working of its policies by an external agency? (Yes/No). If yes, provide name of the agency.",
-              rowSpan: 2,
-            },
-            { content: "P1", colSpan: 2, className: "text-center" },
-            { content: "P2", colSpan: 2, className: "text-center" },
-            { content: "P3", colSpan: 2, className: "text-center" },
-            { content: "P4", colSpan: 2, className: "text-center" },
-            { content: "P5", colSpan: 2, className: "text-center" },
-            { content: "P6", colSpan: 2, className: "text-center" },
-            { content: "P7", colSpan: 2, className: "text-center" },
-            { content: "P8", colSpan: 2, className: "text-center" },
-            { content: "P9", colSpan: 2, className: "text-center" },
-          ],
-          [...Array(9).fill({ content: "", colSpan: 2 })],
-        ]}
+        config={policyReviewTableState}
+        setConfig={setPolicyReviewTableState}
       />
       <Label spaced noCheckbox>
         12. If answer to question (1) above is “No” i.e. not all Principles are
@@ -1195,119 +703,8 @@ Guidelines on Responsible Business Conduct"
         maxHeight="600px"
         className="my-8 border-2 border-blue-200 rounded"
         theme="light"
-        config={[
-          [
-            { content: "Questions", className: "font-semibold " },
-            {
-              content: "P1",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "P2",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "P3",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "P4",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "P5",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "P6",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "P7",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "P8",
-              className: "font-semibold  text-center",
-            },
-            {
-              content: "P9",
-              className: "font-semibold  text-center",
-            },
-          ],
-          [
-            {
-              content:
-                "The entity does not consider the Principles material to its business (Yes/No)",
-            },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            {
-              content:
-                "The entity is not at a stage where it is in a position to formulate and implement the policies on specified principles (Yes/No)",
-            },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            {
-              content:
-                "The entity does not have the financial or/human and technical resources available for the task (Yes/No)",
-            },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            {
-              content:
-                "It is planned to be done in the next financial year (Yes/No)",
-            },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            { content: "Any other reason (please specify)" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "", isInput: true },
-          ],
-        ]}
+        config={policyMaterialityTableState}
+        setConfig={setPolicyMaterialityTableState}
       />
       <Label head spaced noCheckbox>
         SECTION C: PRINCIPLE WISE PERFORMANCE DISCLOSURE
@@ -1333,61 +730,8 @@ Guidelines on Responsible Business Conduct"
       <TableContainer
         className="my-8 border-2 border-blue-200 rounded"
         theme="light"
-        config={[
-          [
-            {
-              content: "Segment",
-              className: "font-semibold ",
-              width: "20vw",
-            },
-            {
-              content: "Total number of training and awareness programmes held",
-              className: "font-semibold ",
-            },
-            {
-              content:
-                "Topics / principles covered under the training and its impact",
-              className: "font-semibold ",
-            },
-            {
-              content:
-                "%age of persons in respective category covered by the awareness programmes",
-              className: "font-semibold ",
-            },
-          ],
-          [
-            {
-              content: "Board of Directors",
-            },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            {
-              content: "Key Managerial Personnel",
-            },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            {
-              content: "Employees other than BoD and KMPs",
-            },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            {
-              content: "Workers",
-            },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-        ]}
+        config={trainingAndAwarenessTableState}
+        setConfig={setTrainingAndAwarenessTableState}
       />
       <Label checked spaced>
         Details of fines / penalties /punishment/ award/ compounding fees/
@@ -1402,120 +746,8 @@ Guidelines on Responsible Business Conduct"
         maxHeight="800px"
         className="my-8 border-2 border-blue-200 rounded"
         theme="light"
-        config={[
-          [
-            {
-              content: "Monetary",
-              colSpan: 6,
-              className: "font-bold text-center bg-yellow-100",
-            },
-          ],
-          [
-            { content: "", width: "15%" },
-            {
-              content: "NGRBC Principle",
-              className: "font-semibold",
-              width: "20%",
-            },
-            {
-              content:
-                "Name of the regulatory/ enforcement agencies/ judicial institutions",
-              className: "font-semibold",
-              width: "20%",
-            },
-            {
-              content: "Amount (In INR)",
-              className: "font-semibold",
-              width: "15%",
-            },
-            {
-              content: "Brief of the Case",
-              className: "font-semibold",
-              width: "20%",
-            },
-            {
-              content: "Has an appeal been preferred? (Yes/No)",
-              className: "font-semibold",
-              width: "10%",
-            },
-          ],
-          [
-            { content: "Penalty/ Fine" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            { content: "Settlement" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            { content: "Compounding fee" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            {
-              content: "Non-Monetary",
-              colSpan: 6,
-              className: "font-bold text-center bg-yellow-100",
-            },
-          ],
-          [
-            { content: "", width: "15%" },
-            {
-              content: "NGRBC Principle",
-              className: "font-semibold",
-              width: "25%",
-            },
-            {
-              content:
-                "Name of the regulatory/ enforcement agencies/ judicial institutions",
-              className: "font-semibold",
-              width: "20%",
-            },
-            {
-              content: "Brief of the Case",
-              className: "font-semibold",
-              width: "30%",
-            },
-            {
-              content: "Has an appeal been preferred? (Yes/No)",
-              className: "font-semibold",
-              width: "10%",
-              colSpan: 2,
-            },
-          ],
-          [
-            { content: "Imprisonment" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            {
-              content: "",
-              colSpan: 2,
-            },
-          ],
-          [
-            { content: "Punishment" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            {
-              content: "",
-              colSpan: 2,
-            },
-          ],
-        ]}
+        config={complianceTableState}
+        setConfig={setComplianceTableState}
       />
       <div className="w-full rounded-md p-[2rem] shadow-md mt-[40px]">
         <Label checked>
@@ -1524,16 +756,14 @@ Guidelines on Responsible Business Conduct"
           been appealed.
         </Label>
         <Input
-          setValue={() => {}}
-          value={""}
+          {...valuConfig("caseDetails")}
           label="Case Details"
           isArea
           spaced
           transparent
         />
         <Input
-          setValue={() => {}}
-          value={""}
+          {...valuConfig("regulatoryAgency")}
           label="Name of the regulatory/ enforcement agencies/ judicial institutions"
           spaced
           transparent
@@ -1544,20 +774,17 @@ Guidelines on Responsible Business Conduct"
           label="Does the entity have an anti-corruption or anti-bribery policy? If yes, provide details in
 brief and if available, provide a web-link to the policy."
           options={["Yes", "No"]}
-          checked={"Yes"}
-          setChecked={() => {}}
+          {...setRadioConfig("antiCorruptionPolicy")}
         />
         <Input
-          setValue={() => {}}
-          value={""}
+          {...valuConfig("describeInBreifAntiCorruption")}
           label="Describe in breif"
           isArea
           spaced
           transparent
         />
         <Input
-          setValue={() => {}}
-          value={""}
+          {...valuConfig("webLinkAntiCorruption")}
           label="Web Link"
           spaced
           transparent
@@ -1569,56 +796,11 @@ brief and if available, provide a web-link to the policy."
       <TableContainer
         className="my-8 border-2 border-blue-200 rounded"
         theme="light"
-        config={[
-          [
-            {
-              content: "",
-              width: "20vw",
-            },
-            {
-              content: "FY (Current Financial Year)",
-              className: "font-semibold ",
-              colSpan: 2,
-            },
-            {
-              content: "FY (Previous Financial Year)",
-              className: "font-semibold ",
-              colSpan: 2,
-            },
-          ],
-          [
-            {
-              content: "",
-            },
-            { content: "Number" },
-            { content: "Remark" },
-            { content: "Number" },
-            { content: "Remark" },
-          ],
-          [
-            {
-              content:
-                "Number of complaints received in relation to issues of Conflict of Interest of the Directors",
-            },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-          [
-            {
-              content:
-                "Number of complaints received in relation to issues of Conflict of Interest of the KMPs",
-            },
-            { content: "" },
-            { content: "" },
-            { content: "" },
-          ],
-        ]}
+        config={conflictOfInterestTableState}
+        setConfig={setConflictOfInterestTableState}
       />
       <Input
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("detailsOfCorrectiveAction")}
         label="Provide details of any corrective action taken or underway on issues related to fines / penalties / action taken by regulators/ law enforcement agencies/ judicial institutions, on cases of corruption and conflicts of interest."
         spaced
         transparent
@@ -1629,15 +811,13 @@ brief and if available, provide a web-link to the policy."
         Principles during the financial year:
       </Label>
       <Input
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("totalNumberAwarenessProgrammes")}
         label="Total number of awareness programmes held"
         spaced
         transparent
       />
       <Input
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("totalNumberParticipants")}
         label="Topics / principles covered under the training"
         spaced
         transparent
@@ -1645,10 +825,35 @@ brief and if available, provide a web-link to the policy."
       <RadioInput
         label="Does the entity have an anti-corruption or anti-bribery policy? If yes, provide details in brief and if available, provide a web-link to the policy."
         options={["Yes", "No"]}
-        checked={"Yes"}
-        setChecked={() => {}}
+        {...setRadioConfig("antiCorruptionPolicyLeadership")}
       />
       <ReportPart2 />
+      <div className="mt-[40px] flex w-full justify-end">
+        <PriButton
+          onClick={async () => {
+            await toast.promise(
+              new Promise((resolve) => {
+                setTimeout(() => {
+                  resolve("Report Generated Successfully");
+                }, 2000);
+              }),
+              {
+                loading: "Generating Report",
+                success:
+                  "Data Submitted Successfully, your report will be generated soon, redirecting to dashboard",
+                error: "Error Generating Report",
+              }
+            );
+
+            setTimeout(() => {
+              router.push("/");
+            }, 3000);
+          }}
+          className="w-fit!"
+        >
+          Generate Report
+        </PriButton>
+      </div>
     </StepsContainer>
   );
 };

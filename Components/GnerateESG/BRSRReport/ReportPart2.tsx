@@ -3,7 +3,7 @@ import Label from "@/Components/Micro/Label";
 import RadioInput from "@/Components/Micro/RadioInput";
 import SubHead from "@/Components/Micro/SubHead";
 import { TableContainer } from "@/Components/Micro/Table";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import {
   AssessmentTable,
   EmployeeBenefitsTable,
@@ -56,6 +56,125 @@ const ReportPart2 = () => {
   const [wageComparisonTable2, setWageCompensationTable2] =
     useState(WageComparisonTable2);
   const [remuTable, setRemuTable] = useState(RemunerationTable);
+  const [inputState, setInputState] = useState({
+    rndInvestment: "",
+    sustainableInput: "",
+    sustainableInputPercentage: "",
+    eprApplicable: "",
+    eprApplicablePercentage: "",
+    lifeCycleAssessment: "",
+    socialEnvironmentalConcerns: "",
+    recycledInputMaterial: "",
+    recycledInputMaterialPercentage: "",
+    reclaimedProducts: "",
+    reclaimedProductsPercentage: "",
+    reclaimedProductsCategory: "",
+    reclaimedProductsCategoryPercentage: "",
+    employeeWellBeing: "",
+    workerWellBeing: "",
+    accessibility: "",
+    equalOpportunity: "",
+    equalOpportunityWebLink: "",
+    returnToWork: "",
+    returnToWorkPercentage: "",
+    grievanceMechanismPermanent: "",
+    grievanceMechanismPermanentExplanation: "",
+    grievanceMechanismOther: "",
+    grievanceMechanismOtherExplanation: "",
+    membership: "",
+    training: "",
+    performanceReview: "",
+    healthSafetyManagement: "",
+    healthSafetyManagementExplanation: "",
+    workRelatedHazards: "",
+    workRelatedHazardsExplanation: "",
+    nonOccupationalMedical: "",
+    safetyIncidents: "",
+    safetyIncidentsExplanation: "",
+    safetyIncidentsCorrectiveAction: "",
+    safetyIncidentsCorrectiveActionExplanation: "",
+    lifeInsurance: "",
+    lifeInsuranceEmployees: "",
+    lifeInsuranceWorkers: "",
+    statutoryDues: "",
+    statutoryDuesExplanation: "",
+    highConsequenceInjury: "",
+    highConsequenceInjuryPercentage: "",
+    transitionAssistance: "",
+    assessmentValueChain: "",
+    assessmentValueChainExplanation: "",
+    correctiveAction: "",
+    correctiveActionExplanation: "",
+    stakeholderGroups: "",
+    stakeholderGroupsFrequency: "",
+    consultationProcess: "",
+    consultationProcessExplanation: "",
+    stakeholderConsultation: "",
+    stakeholderConsultationExplanation: "",
+    stakeholderConsultationSupport: "",
+    stakeholderConsultationSupportExplanation: "",
+    stakeholderEngagement: "",
+    stakeholderEngagementExplanation: "",
+    wageComparison: "",
+    wageComparisonPercentage: "",
+    minimumWages: "",
+    minimumWagesPercentage: "",
+    remuneration: "",
+    remunerationPercentage: "",
+    focalPoint: "",
+    focalPointExplanation: "",
+    grievanceMechanism: "",
+    grievanceMechanismExplanation: "",
+  });
+  const [radioState, setRadioState] = useState({
+    eprApplicable: "Yes",
+    equalOpportunity: "Yes",
+    returnToWork: "Yes",
+    grievanceMechanismPermanent: "Yes",
+    grievanceMechanismOther: "Yes",
+    membership: "Yes",
+    training: "Yes",
+    healthSafetyManagement: "Yes",
+    workRelatedHazards: "Yes",
+    nonOccupationalMedical: "Yes",
+    safetyIncidents: "Yes",
+    lifeInsurance: "Yes",
+    statutoryDues: "Yes",
+    transitionAssistance: "Yes",
+    correctiveAction: "Yes",
+    stakeholderConsultation: "Yes",
+    stakeholderConsultationSupport: "Yes",
+    stakeholderEngagement: "Yes",
+    focalPoint: "Yes",
+    grievanceMechanism: "Yes",
+  });
+
+  const valuConfig = (key: keyof typeof inputState) => {
+    return {
+      value: inputState[key],
+      setValue: (
+        value: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>
+      ) => {
+        setInputState((prevState) => ({
+          ...prevState,
+          [key]: value.target.value,
+        }));
+      },
+    };
+  };
+
+  const setRadioConfig = (key: keyof typeof radioState) => {
+    return {
+      checked: radioState[key as keyof typeof radioState],
+      setChecked: (value: string) => {
+        setRadioState((prevState) => ({
+          ...prevState,
+          [key]: value,
+        }));
+      },
+    };
+  };
+
   return (
     <>
       <SubHead secText>
@@ -75,14 +194,12 @@ const ReportPart2 = () => {
           noSpace
           label="Does the entity have procedures in place for sustainable sourcing? (Yes/No) If yes, what percentage of inputs were sourced sustainably?"
           options={["Yes", "No"]}
-          checked="Yes"
-          setChecked={() => {}}
+          {...setRadioConfig("eprApplicable")}
         />
         <Input
           spaced
           label="Percentage"
-          value={""}
-          setValue={() => {}}
+          {...valuConfig("sustainableInputPercentage")}
           type="number"
           placeholder="Enter percentage"
           transparent
@@ -90,8 +207,7 @@ const ReportPart2 = () => {
       </div>
       <Input
         isArea
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("sustainableInput")}
         label="Describe the processes in place to safely reclaim your products for reusing, recycling and disposing at the end of life, for (a) Plastics (including packaging) (b) E-waste (c) Hazardous waste and (d) other waste."
         transparent
         checkBox
@@ -162,14 +278,12 @@ const ReportPart2 = () => {
         <div className="w-full mt-[40px] flex gap-[1rem]">
           <Input
             label="Indicate Product Category"
-            value={""}
-            setValue={() => {}}
+            {...valuConfig("reclaimedProductsCategory")}
             transparent
           />
           <Input
             label="Reclaimed products and their packaging materials as % of total products sold in respective category"
-            value={""}
-            setValue={() => {}}
+            {...valuConfig("reclaimedProductsCategoryPercentage")}
             type="number"
             placeholder="Enter percentage"
             transparent
@@ -202,8 +316,7 @@ const ReportPart2 = () => {
       <SubHead>Accessibility of workplaces</SubHead>
       <Input
         isArea
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("accessibility")}
         label="Are the premises / offices of the entity accessible to differently abled employees and workers, as per the requirements of the Rights of Persons with Disabilities Act, 2016? 
 If not, whether any steps are being taken by the entity in this regard."
         checkBox
@@ -216,14 +329,12 @@ If not, whether any steps are being taken by the entity in this regard."
           noSpace
           label="Does the entity have an equal opportunity policy as per the Rights of Persons with Disabilities Act, 2016? If so, provide a web-link to the policy."
           options={["Yes", "No"]}
-          checked="Yes"
-          setChecked={() => {}}
+          {...setRadioConfig("equalOpportunity")}
         />
         <Input
           spaced
           label="Web-link"
-          value={""}
-          setValue={() => {}}
+          {...valuConfig("equalOpportunityWebLink")}
           type="number"
           placeholder="Enter number"
           transparent
@@ -248,14 +359,12 @@ If not, whether any steps are being taken by the entity in this regard."
           noSpace
           label="Permanent Employees"
           options={["Yes", "No"]}
-          checked="Yes"
-          setChecked={() => {}}
+          {...setRadioConfig("grievanceMechanismPermanent")}
         />
         <Input
           spaced
           label="Explain Here"
-          value={""}
-          setValue={() => {}}
+          {...valuConfig("grievanceMechanismPermanentExplanation")}
           isArea
           transparent
         />
@@ -265,14 +374,12 @@ If not, whether any steps are being taken by the entity in this regard."
           noSpace
           label="Other than Permanent Employees"
           options={["Yes", "No"]}
-          checked="Yes"
-          setChecked={() => {}}
+          {...setRadioConfig("grievanceMechanismOther")}
         />
         <Input
           spaced
           label="Explain Here"
-          value={""}
-          setValue={() => {}}
+          {...valuConfig("grievanceMechanismOtherExplanation")}
           isArea
           transparent
         />
@@ -311,14 +418,12 @@ If not, whether any steps are being taken by the entity in this regard."
           noSpace
           label="Whether an occupational health and safety management system has been implemented by the entity? (Yes/ No). If yes, the coverage such system?"
           options={["Yes", "No"]}
-          checked="Yes"
-          setChecked={() => {}}
+          {...setRadioConfig("healthSafetyManagement")}
         />
         <Input
           spaced
           label="Explain Here"
-          value={""}
-          setValue={() => {}}
+          {...valuConfig("healthSafetyManagementExplanation")}
           isArea
           transparent
         />
@@ -326,8 +431,7 @@ If not, whether any steps are being taken by the entity in this regard."
       <Input
         label="What are the processes used to identify work-related hazards and assess risks on a routine and non-routine basis by the entity?"
         isArea
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("workRelatedHazards")}
         transparent
         checkBox
         spaced
@@ -335,14 +439,12 @@ If not, whether any steps are being taken by the entity in this regard."
       <RadioInput
         label="Whether you have processes for workers to report the work related hazards and to remove themselves from such risks."
         options={["Yes", "No"]}
-        checked="Yes"
-        setChecked={() => {}}
+        {...setRadioConfig("workRelatedHazards")}
       />
       <RadioInput
         label="Do the employees/ worker of the entity have access to non-occupational medical and healthcare services? "
         options={["Yes", "No"]}
-        checked="Yes"
-        setChecked={() => {}}
+        {...setRadioConfig("nonOccupationalMedical")}
       />
       <Label spaced checked>
         Details of safety incidents
@@ -372,8 +474,7 @@ If not, whether any steps are being taken by the entity in this regard."
       <Input
         label="Provide details of any corrective action taken or underway to address safety-related incidents (if any) and on significant risks / concerns arising from assessments of health & safety practices and working conditions."
         isArea
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("safetyIncidents")}
         transparent
         checkBox
         spaced
@@ -385,20 +486,17 @@ If not, whether any steps are being taken by the entity in this regard."
       <RadioInput
         label="Employees"
         options={["Yes", "No"]}
-        checked="Yes"
-        setChecked={() => {}}
+        {...setRadioConfig("lifeInsurance")}
       />
       <RadioInput
         label="Workers"
         options={["Yes", "No"]}
-        checked="Yes"
-        setChecked={() => {}}
+        {...setRadioConfig("lifeInsurance")}
       />
       <Input
         label="Provide the measures undertaken by the entity to ensure that statutory dues have been deducted and deposited by the value chain partners."
         isArea
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("statutoryDues")}
         transparent
         checkBox
         spaced
@@ -418,8 +516,7 @@ If not, whether any steps are being taken by the entity in this regard."
       <RadioInput
         label="Does the entity provide transition assistance programs to facilitate continued employability and the management of career endings resulting from retirement or termination of employment?"
         options={["Yes", "No"]}
-        checked="Yes"
-        setChecked={() => {}}
+        {...setRadioConfig("transitionAssistance")}
       />
       <Label spaced checked>
         Details on assessment of value chain partners
@@ -431,9 +528,8 @@ If not, whether any steps are being taken by the entity in this regard."
       />
       <Input
         isArea
-        setValue={() => {}}
         label="Provide details of any corrective actions taken or underway to address significant risks / concerns arising from assessments of health and safety practices and working conditions of value chain partners."
-        value={""}
+        {...valuConfig("assessmentValueChain")}
         transparent
         checkBox
         spaced
@@ -445,8 +541,7 @@ If not, whether any steps are being taken by the entity in this regard."
       <SubHead>Essential Indicators</SubHead>
       <Input
         isArea
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("correctiveAction")}
         label="Describe the processes for identifying key stakeholder groups of the entity."
         transparent
         checkBox
@@ -454,8 +549,7 @@ If not, whether any steps are being taken by the entity in this regard."
       />
       <Input
         isArea
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("stakeholderGroups")}
         label="List stakeholder groups identified as key for your entity and the frequency of engagement with each stakeholder group."
         transparent
         checkBox
@@ -463,8 +557,7 @@ If not, whether any steps are being taken by the entity in this regard."
       />
       <Input
         isArea
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("consultationProcess")}
         label="Describe the processes for identifying key stakeholder groups of the entity."
         transparent
         checkBox
@@ -473,8 +566,7 @@ If not, whether any steps are being taken by the entity in this regard."
       <SubHead>Leadership Indicators</SubHead>
       <Input
         isArea
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("stakeholderConsultation")}
         label="Provide the processes for consultation between stakeholders and the Board on economic, environmental, and social topics or if consultation is delegated, how is feedback from such consultations provided to the Board."
         transparent
         checkBox
@@ -482,8 +574,7 @@ If not, whether any steps are being taken by the entity in this regard."
       />
       <Input
         isArea
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("stakeholderConsultationSupport")}
         label="Whether stakeholder consultation is used to support the identification and management of environmental, and social topics (Yes / No). If so, provide details of instances as to how the inputs received from stakeholders on these topics were incorporated into policies and activities of the entity."
         transparent
         checkBox
@@ -494,22 +585,19 @@ If not, whether any steps are being taken by the entity in this regard."
           noSpace
           label="Whether stakeholder consultation is used to support the identification and management of environmental, and social topics (Yes / No). If so, provide details of instances as to how the inputs received from stakeholders on these topics were incorporated into policies and activities of the entity."
           options={["Yes", "No"]}
-          checked="Yes"
-          setChecked={() => {}}
+          {...setRadioConfig("stakeholderConsultation")}
         />
         <Input
           spaced
           label="Explain Here"
-          value={""}
-          setValue={() => {}}
+          {...valuConfig("stakeholderConsultationExplanation")}
           isArea
           transparent
         />
       </div>
       <Input
         isArea
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("stakeholderEngagement")}
         label="Whether stakeholder consultation is used to support the identification and management of environmental, and social topics (Yes / No). If so, provide details of instances as to how the inputs received from stakeholders on these topics were incorporated into policies and activities of the entity."
         transparent
         checkBox
@@ -517,8 +605,7 @@ If not, whether any steps are being taken by the entity in this regard."
       />
       <Input
         isArea
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("stakeholderEngagement")}
         label="Provide details of instances of engagement with, and actions taken to, address the concerns of vulnerable/ marginalized stakeholder groups."
         transparent
         checkBox
@@ -556,13 +643,11 @@ If not, whether any steps are being taken by the entity in this regard."
       <RadioInput
         label="Do you have a focal point (Individual/ Committee) responsible for addressing human rights impacts or issues caused or contributed to by the business?"
         options={["Yes", "No"]}
-        checked="Yes"
-        setChecked={() => {}}
+        {...setRadioConfig("focalPoint")}
       />
       <Input
         isArea
-        setValue={() => {}}
-        value={""}
+        {...valuConfig("focalPointExplanation")}
         label="Describe the internal mechanisms in place to redress grievances related to human rights issues."
         transparent
         checkBox

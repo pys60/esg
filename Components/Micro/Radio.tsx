@@ -20,7 +20,7 @@ const Radio: React.FC<RadioProps> = ({
   return (
     <div
       className={`${checked ? "bg-[#dfeaff]" : "bg-[#ececec]"}
-                    flex items-center p-4 py-2 border border-blue-500 rounded-md`}
+                    flex items-center cursor-pointer p-4 py-2 border border-blue-500 rounded-md`}
     >
       <input
         type="radio"
