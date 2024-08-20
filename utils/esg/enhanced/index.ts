@@ -1,6 +1,5 @@
 import { ASX } from "./asx";
 import { CBS } from "./cbs";
-import { CDP } from "./cdp";
 import { CDP_WATER } from "./cdp-water";
 import { CGPR } from "./cgpr";
 import { DUBAI } from "./dubai";
@@ -11,7 +10,6 @@ import { IIRC } from "./iirc";
 import { ISO26000 } from "./iso26000";
 import { MSC } from "./msc";
 import { NFRD } from "./nfrd";
-import { PRI } from "./pri";
 import { SA8000 } from "./sa8000";
 import { SFDR } from "./sfdr";
 import { UKSC } from "./uksc";
@@ -19,7 +17,6 @@ import { UN_GLOBAL_COMPACT } from "./un-global";
 
 export const ENHANCED = {
   CBS, //1
-  CDP, //2
   CDP_WATER, //3
   CGPR, //4
   DUBAI, //5
@@ -29,7 +26,6 @@ export const ENHANCED = {
   ISO26000, //9
   MSC, //10
   NFRD, //11
-  PRI, //12
   SA8000, //13
   SFDR, //14
   UKSC, //15
