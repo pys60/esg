@@ -1,5 +1,6 @@
 "use client";
 
+import Dropdown from "@/Components/Micro/Dropdown";
 import Input from "@/Components/Micro/Input";
 import PriButton from "@/Components/Micro/PriButton";
 import { useEsgReportDataStore, useUserStore } from "@/utils/Zustand";
@@ -23,6 +24,59 @@ type Props = {
 //   swiftCode: string;
 //   ifscCode: string;
 // }
+
+const INDUSTRIES = [
+  "Agriculture",
+  "Mining",
+  "Fishing",
+  "Fishing Forestry",
+  "Oil and Gas Extraction",
+  "Aqua Culture",
+  "Logging",
+  "Livestock Farming",
+  "Crop Production",
+  "Dairy Farming",
+  "Automobile Manufacturing",
+  "Chemical Production",
+  "Textile Production",
+  "Food and Beverage Processing",
+  "Steel Production",
+  "Electronics Manufacturing",
+  "Construction",
+  "Shipbuilding",
+  "Machinery and Equipment Manufacturing",
+  "Paper and Pulp Production",
+  "Retail",
+  "Banking and Financial Services",
+  "Healthcare",
+  "Education",
+  "Hospitality and Tourism",
+  "Information Technology and Software Services",
+  "Transportation and Logistics",
+  "Real Estate",
+  "Entertainment and Media",
+  "Telecommunications",
+  "Information Technology",
+  "Research and Development",
+  "Data Analysis",
+  "Financial Consulting",
+  "Education and Training Services",
+  "Media and Publishing",
+  "Strategic Planning",
+  "Market Research",
+  "Legal Services",
+  "Scientific Research",
+  "Government Administration",
+  "Non-Profit Management",
+  "Corporate Executive Leadership",
+  "Research Institutes Leadership",
+  "Cultural and Artistic Leadership",
+  "Higher Education Leadership",
+  "Healthcare Administration",
+  "Policy Making and Regulation",
+  "Legal System Leadership (Judiciary)",
+  "International Organizations",
+];
 
 const DetailForAIModal = (props: Props) => {
   const { setUser } = useUserStore();
@@ -55,7 +109,11 @@ const DetailForAIModal = (props: Props) => {
 
   const handleSave = async () => {
     let stepData = {};
-    if (!step1Data.companyName.value || !step1Data.companyBrief.value) {
+    if (
+      !step1Data.companyName.value ||
+      !step1Data.companyBrief.value ||
+      !step1Data.industry.value
+    ) {
       toast(
         "Company Name and Company Brief are required, for using the ZeroCarbon AI.",
         {
@@ -228,6 +286,24 @@ const DetailForAIModal = (props: Props) => {
                     }
                     required={step1Data.companyName.required}
                     type={step1Data.companyName.type}
+                  />
+                  <Dropdown
+                    options={INDUSTRIES.map((ind) => {
+                      return { label: ind, value: ind, filterValue: ind };
+                    })}
+                    dark={true}
+                    label="Industry"
+                    placeholder="Select Industry"
+                    selectedValue={step1Data?.industry?.value}
+                    setSelectedValue={(e: any) => {
+                      setStep1Data({
+                        ...step1Data,
+                        industry: {
+                          ...step1Data?.industry,
+                          value: e,
+                        },
+                      });
+                    }}
                   />
                   <Input
                     checkBox={true}

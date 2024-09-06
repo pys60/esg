@@ -103,11 +103,17 @@ const Dropdown = (props: Props) => {
                 ? "top-[5.5rem]"
                 : "top-[3rem]"
               : "bottom-[4rem]"
-          }  max-h-[40vh] overflow-y-scroll w-full mt-2 border-[1px] border-[rgba(0,0,0,0.5)] rounded-[5px] bg-white z-10`}
+          }  max-h-[40vh] overflow-y-scroll w-full mt-2 border-[1px]  rounded-[5px]
+          ${
+            props.dark
+              ? "bg-[rgba(0,0,0)] border-white/50"
+              : "bg-white border-[rgba(0,0,0,0.5)]"
+          }
+          z-10`}
         >
           <input
             type="text"
-            className={`w-full ${
+            className={`w-full bg-transparent ${
               props.dark ? "placeholder:text-pri" : "placeholder:text-grey"
             } p-[1rem] border-b ${
               props.dark ? "border-pri" : "border-grey"
